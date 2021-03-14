@@ -3,6 +3,7 @@
 A simple wrapper for interfacing with PyPi (Python Package Index) APIs.
 
 **PyPi:** [PyPiWrap](https://pypi.org/project/pypiwrap)
+
 **Documentation:** [PyPiWrap Wiki](https://github.com/angelCarias/pypiwrap/wiki)
 
 ## Installation
