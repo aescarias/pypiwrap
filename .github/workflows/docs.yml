@@ -15,6 +15,7 @@ jobs:
       - name: Build docs with Sphinx
         run: |
           sphinx-build docs/source _build      
+          cp .gitignore _build/
       - name: Push Docs
         run: |
           git checkout -b gh-pages
@@ -22,6 +23,7 @@ jobs:
           touch .nojekyll
           git config --global user.name "aescarias"
           git config --global user.email "aescarias@users.noreply.github.com"
-          git commit -am ":memo: Updating docs for commit ${GITHUB_SHA}"
-          git push deploy gh-pages --force
+          git add .
+          git commit -m ":memo: Updating docs for commit ${GITHUB_SHA}"
+          git push deploy gh-pages
         shell: bash
