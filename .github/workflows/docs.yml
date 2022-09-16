@@ -17,7 +17,7 @@ jobs:
       - name: Build docs with Sphinx
         run: |
           sphinx-build docs/source _build      
-          cp .gitignore _build/
+          cp .gitignore _build
       - name: Init Git
         run: |
           git checkout -b gh-pages
@@ -28,7 +28,6 @@ jobs:
           git rm -rf .
           mv _build/* . && rm _build -r
           touch .nojekyll
-          git add .gitignore .nojekyll
           git add .
           git commit -m ":memo: Updating docs for commit ${GITHUB_SHA}"
           git push origin gh-pages
