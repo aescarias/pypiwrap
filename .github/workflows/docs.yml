@@ -26,8 +26,9 @@ jobs:
       - name: Push Docs
         run: |
           git rm -rf .
-          cp _build/* . -r
+          mv _build/* . && rm _build
           touch .nojekyll
+          git add .gitignore .nojekyll
           git add .
           git commit -m ":memo: Updating docs for commit ${GITHUB_SHA}"
           git push origin gh-pages
