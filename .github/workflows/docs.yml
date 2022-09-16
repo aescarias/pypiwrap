@@ -9,6 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
       - name: Install requirements
         run: |
           python3 -m pip install -e .[docs]
@@ -16,13 +18,16 @@ jobs:
         run: |
           sphinx-build docs/source _build      
           cp .gitignore _build/
-      - name: Push Docs
+      - name: Init Git
         run: |
           git checkout -b gh-pages
-          cp _build/* . -r
-          touch .nojekyll
           git config --global user.name "aescarias"
           git config --global user.email "aescarias@users.noreply.github.com"
+      - name: Push Docs
+        run: |
+          git rm -rf .
+          cp _build/* . -r
+          touch .nojekyll
           git add .
           git commit -m ":memo: Updating docs for commit ${GITHUB_SHA}"
           git push origin gh-pages
