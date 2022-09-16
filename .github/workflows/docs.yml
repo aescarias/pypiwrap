@@ -20,6 +20,8 @@ jobs:
           git checkout -b gh-pages
           cp _build/* . -r
           touch .nojekyll
+          git config --global user.name "aescarias"
+          git config --global user.email "aescarias@users.noreply.github.com"
           git commit -am ":memo: Updating docs for commit ${GITHUB_SHA}"
           git push deploy gh-pages --force
         shell: bash
