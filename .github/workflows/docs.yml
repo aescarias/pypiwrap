@@ -18,7 +18,7 @@ jobs:
       - name: Push Docs
         run: |
           git checkout -b gh-pages
-          cp _build/ . -r
+          cp _build/html . -r
           touch .nojekyll
           git commit -am ":memo: Updating docs for commit ${GITHUB_SHA}"
           git push deploy gh-pages --force
