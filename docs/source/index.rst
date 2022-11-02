@@ -9,15 +9,17 @@ Welcome to pypiwrap
 ``pypiwrap`` is a simple Python API wrapper for the Python Package Index 
 (PyPi) registry. 
 
-It allows users to quickly get information about packages on PyPi.
+It allows users to quickly get information about projects on PyPi.
 
 .. toctree::
    :maxdepth: 2
    :caption: Reference
    
    Client <reference/client>
+   Exceptions <reference/exceptions>
    Objects <reference/objects>
    Utils <reference/utils>
+
 
 Installation
 ------------
@@ -30,13 +32,13 @@ Installation
 
       .. code-block:: sh
 
-         $ python3 -m pip install pypiwrap
+         python3 -m pip install pypiwrap
 
    .. tab-item:: Windows
 
       .. code-block:: sh
 
-         $ py -3 -m pip install pypiwrap
+         py -3 -m pip install pypiwrap
 
 
 .. tip::
@@ -46,14 +48,15 @@ Installation
 Quickstart
 ----------
 
-The main interface for the API is the :class:`pypiwrap.client.PyPiClient` class. An example is shown below.
+The main interface for the API is the :class:`pypiwrap.client.Client` class. An example is shown below.
 
 .. code-block:: python
 
    import pypiwrap
-   wrap = pypiwrap.PyPiClient()
-   pkg = wrap.get_package("requests")
-   print(pkg.name, pkg.author)
+
+   wrap = pypiwrap.Client()
+   proj = wrap.get_project("requests")
+   print(proj.name, proj.author)
 
 
 More detailed documentation is included in the :ref:`Client Reference`.
