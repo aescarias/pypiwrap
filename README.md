@@ -17,9 +17,11 @@ Install `pypiwrap` via `pip` by using `pip install pypiwrap` or equivalent metho
 
 ```py
 import pypiwrap
-wrap = pypiwrap.PyPiClient()
-package = wrap.get_package("requests")
-print(package.name) # requests
-print(package.author) # Kenneth Reitz
-print(package.summary) # Python HTTP for Humans.
+
+wrap = pypiwrap.Client()
+project = wrap.get_project("requests")
+
+print(project.name) # requests
+print(project.author) # Kenneth Reitz
+print(project.summary) # Python HTTP for Humans.
 ```

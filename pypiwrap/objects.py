@@ -1,47 +1,56 @@
 from __future__ import annotations
-from datetime import datetime
 
+from datetime import datetime
 from dataclasses import dataclass
 
-from pypiwrap.utils import Size, remove_additional, iso_to_datetime
+from . import utils 
+from .utils import Size
 
 
 class Base:
     """The base class for other pypiwrap objects"""
     
     @classmethod
-    def from_raw(cls, data: dict):
-        data = data.copy()
-        return cls(**remove_additional(cls, data))
+    def _from_raw(cls, data: dict):
+        return cls(**utils.remove_additional(cls, data.copy()))
     
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
+    def _build_repr(self, *args, **kwargs) -> str:
+        arg_string = " ".join(map(repr, args))
+        kwarg_string = " ".join(f"{k}={repr(v)}" for k, v in kwargs.items())
+        final = (self.__class__.__name__, arg_string, kwarg_string)
+
+        return "<" + ' '.join(filter(None, final)).strip() + ">"
+    
 
 @dataclass
-class Package(Base):
-    """A PyPi package"""
+class Project(Base):
+    """A PyPi project"""
 
     author: str
-    """The author of the package"""
+    """The author of the project"""
 
     author_email: str
-    """The email of the package's author"""
+    """The email of the project's author"""
 
     bugtrack_url: str | None
     """A bug tracking URL if available"""
 
     classifiers: list[str]
-    """A list of PyPi classifiers for the package"""
+    """A list of PyPi classifiers for the project.
+    Valid values are provided at https://pypi.org/classifiers.
+    """
 
     description: str
-    """A description of the package"""
+    """A description of the project"""
     
     description_content_type: str | None
     """The content type of the description if available"""
 
     docs_url: str | None
-    """The documentation for the package if available"""
+    """The documentation URL for the project if available"""
 
     download_url: str
     """The project's download URL"""
@@ -62,95 +71,108 @@ class Package(Base):
     """The email of the project's maintainer"""
 
     name: str
-    """The name of the package"""
+    """The name of the project"""
 
     package_url: str
     """The PyPi package URL"""
 
     platform: str | None
-    """The platform for which this package is designed for, if any specifically"""
+    """The release's platform target if any specifically"""
 
     project_urls: dict[str, str]
     """A mapping of URLs relating to the project"""
 
     project_url: str
-    """The project URL of the package"""
+    """The PyPi project's URL"""
 
     release_url: str
     """The project URL relating to this specific release"""
 
-    requires_dist: str | None
-    """A list of required distributions or dependencies"""
+    requires_dist: list[str]
+    """A list of required distributions or dependencies in a format similar to a requirements file"""
 
     requires_python: str | None
-    """The version required for the package"""
+    """The version required for this release"""
 
     summary: str
-    """A short summary of the package"""
+    """A short summary of the project"""
 
     version: str
-    """The version of the package"""
+    """The version of the project"""
 
     yanked: bool
-    """Whether his package was 'yanked' or removed from circulation"""
+    """Whether this release was 'yanked' or removed from circulation"""
 
     yanked_reason: str | None
-    """If available, the reason for the yanking of the package"""
+    """The reason the release was yanked if applicable"""
 
-    file_urls: list[ReleaseURL]
-    """A list of file URLs for this package"""
+    file_urls: list[ReleaseFile]
+    """A list of file URLs for this release"""
 
     vulnerabilities: list[Vulnerability]
-    """A list of vulnerabilities for this package if any"""
+    """A list of vulnerabilities for this release if any"""
 
     last_serial: int
 
     @classmethod
-    def from_raw(cls, data: dict) -> Package:
+    def _from_raw(cls, data: dict) -> Project:
         data = data.copy()
-        info = remove_additional(cls, data["info"])
+        info = utils.remove_additional(cls, data["info"])
 
-        vulns = map(Vulnerability.from_raw, data["vulnerabilities"])
-        files = map(ReleaseURL.from_raw, data["urls"])
+        vulns = list(map(Vulnerability._from_raw, data["vulnerabilities"]))
+        files = list(map(ReleaseFile._from_raw, data["urls"]))
 
-        return Package(
-            **info,
+        if not data["info"].get("requires_dist"):
+            data["info"]["requires_dist"] = []
+
+        return cls(**info,
             last_serial=data["last_serial"],
-            vulnerabilities=[*vulns],
-            file_urls=[*files]
+            vulnerabilities=vulns,
+            file_urls=files
         )
 
     def __repr__(self) -> str:
-        return f"<Package '{self.name}' summary='{self.summary}' " \
-               f"version='{self.version}' package_url='{self.package_url}'>"
+        return self._build_repr(self.name, 
+            summary=self.summary, 
+            version=self.version, 
+            package_url=self.package_url
+        )
 
 
 @dataclass
-class ReleaseURL(Base):
+class ReleaseFile(Base):
+    """A file part of a release"""
+
     comment_text: str
     """A comment for this release"""
 
     digests: dict[str, str]
-    """A mapping of hashes corresponding to this release file"""
+    """A mapping of hashes corresponding to this release file.
+
+    The keys available can vary but should always members of ``hashlib.algorithms_guaranteed``
+    """
     
     # downloads: int
+    # md5_digest: str
+
     filename: str
     """The filename for this release file"""
    
     has_sig: bool
     """Whether this release file has a PGP signature attached to it"""
 
-    md5_digest: str
-    """An MD5 digest of the release file"""
-
-    packagetype: str
+    package_type: str  # API: packagetype
     """The type of release file. It can be either of:
+    
     - ``sdist``: A source distribution (generally a .tar.gz file)
-    - ``bdist_*``: A built distribution (generally a wheel or egg file)
+    - ``bdist_*``: A built distribution where `*` is generally `wheel` or `egg`
     """
 
     python_version: str
-    """A general Python version for this package"""
+    """The general Python version target for this file.
+    
+    It is `source` for source distributions and a version target for built distributions.
+    """
 
     requires_python: str
     """The required version constraints for this file"""
@@ -162,7 +184,7 @@ class ReleaseURL(Base):
     """The time this file was uploaded on"""
     
     upload_time_tz: datetime # API: upload_time_iso_8601
-    """The time this file was uploaded on in UTC and compliant with IS0 8601"""
+    """The time this file was uploaded on in a format compliant with ISO 8601 and in UTC"""
 
     url: str
     """The URL for this release file"""
@@ -174,28 +196,32 @@ class ReleaseURL(Base):
     """If the package was yanked, the reason for such"""
 
     @classmethod
-    def from_raw(cls, data: dict) -> ReleaseURL:
+    def _from_raw(cls, data: dict) -> ReleaseFile:
         data = data.copy()
-        # Converting values to appropriate ones
+
+        # Converting values to appropriate types
         data["size"] = Size.from_bytes(data["size"])
-        data["upload_time_iso_8601"] = iso_to_datetime(data["upload_time_iso_8601"])
+        data["upload_time_iso_8601"] = utils.iso_to_datetime(data["upload_time_iso_8601"])
         data["upload_time"] = datetime.fromisoformat(data["upload_time"])
 
         # Renaming values to appropriate
         data["upload_time_tz"] = data.pop("upload_time_iso_8601")
-        
-        data.pop("downloads")
-        return ReleaseURL(**data)
+        data["package_type"] = data.pop("packagetype")
 
+        # Remove unneeded/unimplemented
+        data = utils.remove_additional(cls, data)
+        return cls(**data)
 
     def __repr__(self) -> str:
-        return f"<ReleaseURL filename='{self.filename}' size='{self.size.si}' " \
-               f"packagetype='{self.packagetype}'>"
+        return self._build_repr(self.filename, 
+            size=self.size.si, 
+            package_type=self.package_type
+        )
 
 
 @dataclass
 class Vulnerability(Base):
-    """A package vulnerability"""
+    """A vulnerability in a project or release"""
 
     aliases: str
     """The names used to refer to this vulnerability"""
@@ -219,30 +245,32 @@ class Vulnerability(Base):
     """A short summary of the vulnerability if available"""
 
     def __repr__(self) -> str:
-        return f"<Vulnerability id='{self.id}' source='{self.source}'>"
+        return self._build_repr(id=self.id, source=self.source)
 
 
 @dataclass
-class PackageFile(Base):
+class DistributionFile(Base):
+    """A file for a package distribution"""
+
     filename: str
-    """The filename of the package file"""
+    """The filename of the distribution"""
 
     url: str
     """The download URL for the file"""
 
     hashes: dict[str, str]
-    """A mapping of common hashes for the file"""
+    """A mapping of common hashes for the file. Similar to :attr:`ReleaseFile.digests`."""
 
     requires_python: str | None = None
     """If specified, the version constraints for this file"""
 
     dist_info_metadata: bool | dict[str, str] | None = None
     """
-    - If a boolean, whether the file has associated metadata
-    - If a dictionary, a mapping of hashes to encoded metadata hashes
+    - If a boolean, whether this file has associated metadata
+    - If a dictionary, a mapping of hashes to encoded metadata file hashes
     """
 
-    gpg_sig: bool | None = None
+    has_sig: bool | None = None  # API: gpg_sig
     """Whether a GPG signature is included with the file"""
 
     yanked: bool | str | None = None
@@ -252,19 +280,21 @@ class PackageFile(Base):
     """
 
     @classmethod
-    def from_raw(cls, data: dict) -> PackageFile:
+    def _from_raw(cls, data: dict) -> DistributionFile:
         # Certain API attributes, like requires-python, must be converted
         # to snake_case before unpacking
         result = { k.replace("-", "_"): v for k, v in data.items() }
-        return PackageFile(**result)
+        result["has_sig"] = result.get("gpg_sig")
+
+        return cls(**utils.remove_additional(cls, result))
 
     def __repr__(self) -> str:
-        return f"<PackageFile '{self.filename}' url='{self.url}'>"
+        return self._build_repr(self.filename, url=self.url)
 
 
 @dataclass
 class Stats(Base):
-    """Dataclass for PyPi statistics"""
+    """A PyPi statistics object. It currently only stores the top packages by size."""
 
     total_size: Size
     """The current size of all packages on PyPi combined"""
@@ -273,12 +303,14 @@ class Stats(Base):
     """The packages with the largest sizes"""
 
     @classmethod
-    def from_raw(cls, data: dict) -> Stats:
+    def _from_raw(cls, data: dict) -> Stats:
         size = Size.from_bytes(data["total_packages_size"])
         pkgs = { 
             k: Size.from_bytes(v["size"]) 
             for k, v in data["top_packages"].items() 
         }
  
-        return Stats(size, pkgs)
-        
+        return cls(size, pkgs)
+    
+    def __repr__(self) -> str:
+        return self._build_repr(total_size=self.total_size)
