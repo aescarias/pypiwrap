@@ -9,7 +9,7 @@
 project = 'pypiwrap'
 copyright = '2022, Angel Carias'
 author = 'Angel Carias'
-release = '0.2.0'
+release = '0.3.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -24,7 +24,8 @@ extensions = [
 templates_path = ['_templates']
 exclude_patterns = []
 
-
+copybutton_prompt_text = r'>>> |\.\.\. '
+copybutton_prompt_is_regexp = True
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
