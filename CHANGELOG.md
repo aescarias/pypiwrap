@@ -10,12 +10,11 @@ Client:
 
 - `Client`'s functionality has been split into two new classes:
   - `PyPIClient`: The JSON and Stats API
+    - `Client.get_project` -> `PyPIClient.get_project`
+    - `Client.get_stats` -> `PyPIClient.get_stats`    
   - `SimpleClient`: The Simple API
-  So:
-  - `Client.get_project` -> `PyPIClient.get_project`
-  - `Client.get_stats` -> `PyPIClient.get_stats`
-  - `Client.get_all_projects` -> `SimpleClient.get_index`
-  - `Client.get_files` -> `SimpleClient.get_page`
+    - `Client.get_all_projects` -> `SimpleClient.get_index`
+    - `Client.get_files` -> `SimpleClient.get_page`
 - Clients can now be used as context managers (`with`)
 - Clients now report an user agent
 
