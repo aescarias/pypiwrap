@@ -14,21 +14,26 @@ class Size(NamedTuple):
     """A tuple that includes human-readable representations of a file size"""
 
     bytes: int
+    """The size represented in bytes"""
     iec: str
-    """The size represented with an IEC prefix (KiB, MiB)"""
+    """The size represented in binary/IEC units (KiB, MiB)"""
     si: str
-    """The size represented with an SI prefix (KB, MB)"""
+    """The size represented in decimal/SI units (KB, MB)"""
 
     @classmethod
-    def from_bytes(cls, num: int) -> Size:
+    def from_int(cls, num: int) -> Size:
         return Size(
             num, 
             iec=bytes_to_readable(num, 'iec'), 
             si=bytes_to_readable(num, 'si')
         )
 
+    def __int__(self) -> int:
+        return self.bytes
+
 
 def iso_to_datetime(iso: str) -> datetime:
+    """Convert an ISO 8601 string to a datetime object"""
     return datetime.strptime(iso, "%Y-%m-%dT%H:%M:%S.%f%z")
 
 def gpg_from_url(url: str) -> str | None:
@@ -40,6 +45,7 @@ def gpg_from_url(url: str) -> str | None:
 
 # where unit is either of 'si' or 'iec'
 def bytes_to_readable(num: float, unit: str = 'si') -> str:
+    """Converts a number (in bytes) to a human-readable string representation"""
     if unit == 'iec':
         suffixes = IEC_SUFFIXES
         step_unit = 1024
@@ -56,7 +62,7 @@ def bytes_to_readable(num: float, unit: str = 'si') -> str:
     
     return f"{num:.2f} {suffix or suffixes[-1]}"
 
-def remove_additional(cls: type[Any], data: dict) -> dict:
+def remove_additional(cls: type[Any], data: dict[str, Any]) -> dict[str, Any]:
     """Takes any dataclass and a dictionary that can unpack to it
     and strips any additional keys not part of the dataclass"""
 
