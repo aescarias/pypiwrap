@@ -1,7 +1,7 @@
 Utils Reference
 ===============
 
-The ``utils`` module provides utilities for working with the PyPI API.
+The ``utils`` module provides utilities used within the project.
 
 .. automodule:: pypiwrap.utils
    :members:

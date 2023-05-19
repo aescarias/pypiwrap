@@ -7,9 +7,9 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'pypiwrap'
-copyright = '2022, Angel Carias'
+copyright = '2023, Angel Carias'
 author = 'Angel Carias'
-release = '0.3.0'
+release = '1.0.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
