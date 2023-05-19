@@ -3,22 +3,28 @@
 ![PyPi - Downloads](https://img.shields.io/pypi/dw/pypiwrap?style=flat-square)
 ![PyPI](https://img.shields.io/pypi/v/pypiwrap?style=flat-square)
 ![GitHub](https://img.shields.io/github/license/aescarias/pypiwrap?style=flat-square)
-![Lines of code](https://img.shields.io/tokei/lines/github/aescarias/pypiwrap?style=flat-square)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pypiwrap?style=flat-square)
 
-A simple API wrapper for the Python Package Index (PyPi).
+A simple API wrapper for the Python Package Index (PyPI), including a simple interface to get project and release data.
 
-It includes a minimal interface for users to get information about Python packages.
+- [Documentation](https://aescarias.github.io/pypiwrap)
+- [PyPI](https://pypi.org/project/pypiwrap)
 
 ## Installation
 
-Install `pypiwrap` via `pip` by using `pip install pypiwrap` or equivalent methods.
+**Python 3.7 or higher is required.**
+
+Install `pypiwrap` through `pip`:
+
+- On Linux/macOS, `python3 -m pip install pypiwrap`
+- On Windows, `py -3 -m pip install pypiwrap`
 
 ## Example
 
 ```py
 import pypiwrap
 
-wrap = pypiwrap.Client()
+wrap = pypiwrap.PyPIClient()
 project = wrap.get_project("requests")
 
 print(project.name) # requests
