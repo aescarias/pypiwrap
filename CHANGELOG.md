@@ -2,7 +2,7 @@
 
 A complete changelog for the `pypiwrap` project.
 
-## 1.0.0 (18-5-2023)
+## 1.0.0 (19-5-2023)
 
 This is the first major release :tada:. It adds some notable changes to the structure of the project.
 
