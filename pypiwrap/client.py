@@ -1,95 +1,89 @@
 from __future__ import annotations
-from typing import Generator
+from typing import Generator, Any
 
 import requests
 
-from . import objects, exceptions
+from . import exceptions, objects
 
 JSON_URL = "https://pypi.org/pypi"
 STATS_URL = "https://pypi.org/stats"
+
 SIMPLE_URL = "https://pypi.org/simple"
+SIMPLE_CONTENT_TYPE = "application/vnd.pypi.simple.v1+json"
 
-CONTENT_TYPE = "application/vnd.pypi.simple.v1+json"
-        
-    
-class Client:
-    """Client interface to the PyPi APIs
+USER_AGENT = "pypiwrap/1.0.0 (github: aescarias)"
 
-    All methods here are expected to raise a :class:`~.exceptions.ClientError` or any of its subclasses 
-    in case it was unable to retrieve information due to an error.
 
-    For example:
-        >>> import pypiwrap
-        >>> wrap = pypiwrap.Client()
-        >>> rope = wrap.get_project("rope", "1.4.0")
-        >>> print(rope.summary)
-        'a python refactoring library...'
+class PyPIClient:
+    """Client for the PyPI JSON and Stats API"""
 
-    """
     def __init__(self) -> None:
         self.rest = requests.Session()
-    
+        self.rest.headers["User-Agent"] = USER_AGENT
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.rest.close()
+
     def get_project(self, name: str, version: str | None = None) -> objects.Project:
-        """Gets information about a project or any of its specific versions.
+        """Gets information about a project or any of its specific releases.
         
         Arguments:
             name (:class:`str`): The name of the project
             
             version (:class:`str`, optional):
-                The version to get specific information about. If not specified,
-                the latest version will be assumed.
-
-        Raises:
-            :class:`~.exceptions.NotFound` - The project or version was not found.
-
-            :class:`~.exceptions.ClientError` - The client was unable to retrieve the project due to an error.
+                A specific version of the project. If none specified,
+                the latest is assumed.
         """
         
         if version:
             rs = self.rest.get(f"{JSON_URL}/{name}/{version}/json")
         else:
             rs = self.rest.get(f"{JSON_URL}/{name}/json")
-
-        if not rs.ok:
-            raise exceptions.error_from_response(rs, {
-                404: f"Could not find project or release for '{name}'"
-            })
         
-        return objects.Project._from_raw(rs.json())
-    
-    def get_all_projects(self) -> Generator[str, None, None]:
-        """Yields a list of names for all the projects available on PyPi"""
-        rs = self.rest.get(SIMPLE_URL, headers={ "Accept": CONTENT_TYPE })        
-
-        if not rs.ok:
-            raise exceptions.error_from_response(rs)
-
-        projects = rs.json()["projects"]
-
-        for proj in projects:
-            yield proj["name"]
-
-    def get_files(self, name: str) -> list[objects.DistributionFile]:
-        """Gets the file distributions for a package."""
-        rs = self.rest.get(f"{SIMPLE_URL}/{name}", headers={ "Accept": CONTENT_TYPE })
-        
-        if not rs.ok:
-            raise exceptions.error_from_response(rs, {
-                404: f"Could not find project '{name}'"
-            })
-        
-        files = rs.json()["files"]
-
-        return list(map(objects.DistributionFile._from_raw, files))
-
-    def get_stats(self) -> objects.Stats:
-        """Gets statistics about the PyPi registry"""
-
-        rs = self.rest.get(STATS_URL, headers={
-            "Accept": "application/json"
+        exceptions.raise_for_status(rs, {
+            404: f"Could not find project or release for '{name}'"
         })
         
-        if not rs.ok:
-            raise exceptions.error_from_response(rs)
+        return objects.Project._from_raw(rs.json())
+
+    def get_stats(self) -> objects.Stats:
+        """Gets statistics about PyPI"""
         
+        rs = self.rest.get("https://pypi.org/stats", 
+                           headers={ "Accept": "application/json"})
+        exceptions.raise_for_status(rs)
+
         return objects.Stats._from_raw(rs.json())
+
+
+class SimpleClient:
+    """Client for the PyPI Simple API"""
+
+    def __init__(self) -> None:
+        self.rest = requests.Session()
+        self.rest.headers["Accept"] = SIMPLE_CONTENT_TYPE
+        self.rest.headers["User-Agent"] = USER_AGENT
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.rest.close()
+    
+    def get_index(self) -> Generator[str, None, None]:
+        """Yields a list of all projects registered on PyPI"""
+        rs = self.rest.get(SIMPLE_URL)
+        exceptions.raise_for_status(rs)
+
+        for project in rs.json()["projects"]:
+            yield project["name"]
+
+    def get_page(self, project: str) -> objects.ProjectPage:
+        """Gets a specific page for a project"""
+        rs = self.rest.get(f"{SIMPLE_URL}/{project}")
+        exceptions.raise_for_status(rs)
+        
+        return objects.ProjectPage._from_raw(rs.json())
