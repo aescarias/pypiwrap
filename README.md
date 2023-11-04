@@ -5,7 +5,9 @@
 ![GitHub](https://img.shields.io/github/license/aescarias/pypiwrap?style=flat-square)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pypiwrap?style=flat-square)
 
-A simple API wrapper for the Python Package Index (PyPI), including a simple interface to get project and release data.
+A simple API wrapper for the Python Package Index (PyPI).
+
+`pypiwrap` provides simple interfaces for getting project and release data from PyPI repositories.
 
 - [Documentation](https://aescarias.github.io/pypiwrap)
 - [PyPI](https://pypi.org/project/pypiwrap)

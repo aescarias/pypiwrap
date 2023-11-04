@@ -9,4 +9,4 @@ from .client import SimpleClient, PyPIClient
 __name__ = "pypiwrap"
 __author__ = 'Angel Carias'
 __license__ = 'MIT'
-__version__ = '1.0.0'
+__version__ = '1.1.0'
