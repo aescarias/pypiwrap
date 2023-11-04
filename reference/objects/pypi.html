@@ -1,0 +1,706 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Simple Objects Reference" href="simple.html" /><link rel="prev" title="Exceptions Reference" href="../exceptions.html" />
+
+    <!-- Generated with Sphinx 7.1.2 and Furo 2023.09.10 -->
+        <title>PyPI Objects Reference - pypiwrap 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">pypiwrap 1.1.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">pypiwrap 1.1.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../client.html">Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exceptions.html">Exceptions</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">PyPI Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simple.html">Simple Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html">Utils</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/aescarias/pypiwrap">Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pypi.org/project/pypiwrap">PyPI</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="pypi-objects-reference">
+<h1>PyPI Objects Reference<a class="headerlink" href="#pypi-objects-reference" title="Permalink to this heading">#</a></h1>
+<p>These objects are used by <a class="reference internal" href="../client.html#pypiwrap.client.PyPIClient" title="pypiwrap.client.PyPIClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">pypiwrap.client.PyPIClient</span></code></a> and represent the data returned
+by the <a class="reference external" href="https://warehouse.pypa.io/api-reference/json.html">PyPI JSON and Stats API</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There currently seems to be no PEP or standard formalizing the structure of this API.
+The documentation here comes mainly from inference. While it seems to have remained
+stable, changes may occur.</p>
+</div>
+<span class="target" id="module-pypiwrap.objects.pypi"></span><dl class="py class">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypiwrap.objects.pypi.</span></span><span class="sig-name descname"><span class="pre">Project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">author</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">author_email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bugtrack_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifiers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description_content_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docs_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">home_page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keywords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">license</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maintainer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maintainer_email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">release_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requires_dist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requires_python</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yanked</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yanked_reason</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile" title="pypiwrap.objects.pypi.ReleaseFile"><span class="pre">ReleaseFile</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vulnerabilities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pypiwrap.objects.pypi.Vulnerability" title="pypiwrap.objects.pypi.Vulnerability"><span class="pre">Vulnerability</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_serial</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypiwrap.objects.pypi.Project" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIObject</span></code></p>
+<p>A PyPI project. This includes information about the project, its releases, 
+and vulnerabilities.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.author">
+<span class="sig-name descname"><span class="pre">author</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.author" title="Permalink to this definition">#</a></dt>
+<dd><p>The author of this project</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.author_email">
+<span class="sig-name descname"><span class="pre">author_email</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.author_email" title="Permalink to this definition">#</a></dt>
+<dd><p>The email of the project’s author</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.bugtrack_url">
+<span class="sig-name descname"><span class="pre">bugtrack_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.bugtrack_url" title="Permalink to this definition">#</a></dt>
+<dd><p>A bug tracking URL if available</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.1.: </span>Will be removed in 2.0. Check for a bugtrack URL in <a class="reference internal" href="#pypiwrap.objects.pypi.Project.project_urls" title="pypiwrap.objects.pypi.Project.project_urls"><code class="xref py py-attr docutils literal notranslate"><span class="pre">project_urls</span></code></a> instead.</p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.classifiers">
+<span class="sig-name descname"><span class="pre">classifiers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.classifiers" title="Permalink to this definition">#</a></dt>
+<dd><p>A list of PyPI <a class="reference external" href="https://pypi.org/classifiers">classifiers</a> for this project</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.description" title="Permalink to this definition">#</a></dt>
+<dd><p>A description of the project</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.description_content_type">
+<span class="sig-name descname"><span class="pre">description_content_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.description_content_type" title="Permalink to this definition">#</a></dt>
+<dd><p>The content type of the description if available</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.docs_url">
+<span class="sig-name descname"><span class="pre">docs_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.docs_url" title="Permalink to this definition">#</a></dt>
+<dd><p>The documentation URL for the project if available</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.download_url">
+<span class="sig-name descname"><span class="pre">download_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.download_url" title="Permalink to this definition">#</a></dt>
+<dd><p>The project’s download URL</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.file_urls">
+<span class="sig-name descname"><span class="pre">file_urls</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile" title="pypiwrap.objects.pypi.ReleaseFile"><span class="pre">ReleaseFile</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.file_urls" title="Permalink to this definition">#</a></dt>
+<dd><p>A list of files for this release</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.home_page">
+<span class="sig-name descname"><span class="pre">home_page</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.home_page" title="Permalink to this definition">#</a></dt>
+<dd><p>The project’s home page</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.keywords">
+<span class="sig-name descname"><span class="pre">keywords</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.keywords" title="Permalink to this definition">#</a></dt>
+<dd><p>Keywords relating to this project</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.last_serial">
+<span class="sig-name descname"><span class="pre">last_serial</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.last_serial" title="Permalink to this definition">#</a></dt>
+<dd><p>This is an internal value used by PyPI to indicate last modification.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.license">
+<span class="sig-name descname"><span class="pre">license</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.license" title="Permalink to this definition">#</a></dt>
+<dd><p>The license for this project</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.maintainer">
+<span class="sig-name descname"><span class="pre">maintainer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.maintainer" title="Permalink to this definition">#</a></dt>
+<dd><p>The project’s maintainer</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.maintainer_email">
+<span class="sig-name descname"><span class="pre">maintainer_email</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.maintainer_email" title="Permalink to this definition">#</a></dt>
+<dd><p>The email of the project’s maintainer</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.name" title="Permalink to this definition">#</a></dt>
+<dd><p>The name of the project</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.package_url">
+<span class="sig-name descname"><span class="pre">package_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.package_url" title="Permalink to this definition">#</a></dt>
+<dd><p>The PyPI package URL. Read <a class="reference internal" href="#pypiwrap.objects.pypi.Project.project_url" title="pypiwrap.objects.pypi.Project.project_url"><code class="xref py py-attr docutils literal notranslate"><span class="pre">project_url</span></code></a> for details.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.platform">
+<span class="sig-name descname"><span class="pre">platform</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.platform" title="Permalink to this definition">#</a></dt>
+<dd><p>The release’s platform target if any specified</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.project_url">
+<span class="sig-name descname"><span class="pre">project_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.project_url" title="Permalink to this definition">#</a></dt>
+<dd><p>The PyPI project’s URL.</p>
+<p><a class="reference internal" href="#pypiwrap.objects.pypi.Project.package_url" title="pypiwrap.objects.pypi.Project.package_url"><code class="xref py py-attr docutils literal notranslate"><span class="pre">package_url</span></code></a> and <a class="reference internal" href="#pypiwrap.objects.pypi.Project.project_url" title="pypiwrap.objects.pypi.Project.project_url"><code class="xref py py-attr docutils literal notranslate"><span class="pre">project_url</span></code></a> are effectively the same value.
+This attribute should be preferred (<a class="reference external" href="https://github.com/pypi/warehouse/issues/3206">see this</a>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.project_urls">
+<span class="sig-name descname"><span class="pre">project_urls</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.project_urls" title="Permalink to this definition">#</a></dt>
+<dd><p>A mapping of labels to URLs relating to the project</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.release_url">
+<span class="sig-name descname"><span class="pre">release_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.release_url" title="Permalink to this definition">#</a></dt>
+<dd><p>The project URL relating to this specific release</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.requires_dist">
+<span class="sig-name descname"><span class="pre">requires_dist</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.requires_dist" title="Permalink to this definition">#</a></dt>
+<dd><p>A list of required distributions or dependencies in a format similar to a requirements file</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.requires_python">
+<span class="sig-name descname"><span class="pre">requires_python</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.requires_python" title="Permalink to this definition">#</a></dt>
+<dd><p>The Python version required for this release</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.summary" title="Permalink to this definition">#</a></dt>
+<dd><p>A short summary of the project</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.version">
+<span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.version" title="Permalink to this definition">#</a></dt>
+<dd><p>The version of the project</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.vulnerabilities">
+<span class="sig-name descname"><span class="pre">vulnerabilities</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pypiwrap.objects.pypi.Vulnerability" title="pypiwrap.objects.pypi.Vulnerability"><span class="pre">Vulnerability</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.vulnerabilities" title="Permalink to this definition">#</a></dt>
+<dd><p>A list of vulnerabilities for this release if any</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.yanked">
+<span class="sig-name descname"><span class="pre">yanked</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.yanked" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether this release was ‘yanked’ or removed from circulation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Project.yanked_reason">
+<span class="sig-name descname"><span class="pre">yanked_reason</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Project.yanked_reason" title="Permalink to this definition">#</a></dt>
+<dd><p>The reason the release was yanked if applicable</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypiwrap.objects.pypi.</span></span><span class="sig-name descname"><span class="pre">ReleaseFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comment_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digests</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_sig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">python_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requires_python</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../utils.html#pypiwrap.utils.Size" title="pypiwrap.utils.Size"><span class="pre">Size</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">upload_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upload_time_tz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yanked</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yanked_reason</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIObject</span></code></p>
+<p>A file part of a PyPI release</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.comment_text">
+<span class="sig-name descname"><span class="pre">comment_text</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.comment_text" title="Permalink to this definition">#</a></dt>
+<dd><p>A comment for this release</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.digests">
+<span class="sig-name descname"><span class="pre">digests</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.digests" title="Permalink to this definition">#</a></dt>
+<dd><p>A mapping of hashes corresponding to this release file.</p>
+<p>Most commonly, the digests available are <code class="docutils literal notranslate"><span class="pre">md5</span></code>, <code class="docutils literal notranslate"><span class="pre">sha256</span></code>, and <code class="docutils literal notranslate"><span class="pre">blake2b_256</span></code>. 
+The keys available must be members of <code class="xref py py-attr docutils literal notranslate"><span class="pre">hashlib.algorithms_guaranteed</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.filename">
+<span class="sig-name descname"><span class="pre">filename</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.filename" title="Permalink to this definition">#</a></dt>
+<dd><p>The filename for this release file</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.has_sig">
+<span class="sig-name descname"><span class="pre">has_sig</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.has_sig" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether this release file has a PGP/GPG signature attached to it.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.1: </span>Will be removed in 2.0. If you need a signature, provide the <a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.url" title="pypiwrap.objects.pypi.ReleaseFile.url"><code class="xref py py-attr docutils literal notranslate"><span class="pre">url</span></code></a> 
+attribute to <a class="reference internal" href="../utils.html#pypiwrap.utils.gpg_from_url" title="pypiwrap.utils.gpg_from_url"><code class="xref py py-func docutils literal notranslate"><span class="pre">pypiwrap.utils.gpg_from_url()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.package_type">
+<span class="sig-name descname"><span class="pre">package_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.package_type" title="Permalink to this definition">#</a></dt>
+<dd><p>The type of release file. It can be either of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sdist</span></code>: A source distribution (generally a .tar.gz file)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bdist_*</span></code>: A built distribution where <cite>*</cite> is either <cite>wheel</cite> or <cite>egg</cite></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.python_version">
+<span class="sig-name descname"><span class="pre">python_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.python_version" title="Permalink to this definition">#</a></dt>
+<dd><p>The general Python version target for this file.</p>
+<p>It is ‘source’ for source distributions and a version target for built distributions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.requires_python">
+<span class="sig-name descname"><span class="pre">requires_python</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.requires_python" title="Permalink to this definition">#</a></dt>
+<dd><p>The Python version constraints for this file</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.size">
+<span class="sig-name descname"><span class="pre">size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../utils.html#pypiwrap.utils.Size" title="pypiwrap.utils.Size"><span class="pre">Size</span></a></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.size" title="Permalink to this definition">#</a></dt>
+<dd><p>The size of the release file</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.upload_time">
+<span class="sig-name descname"><span class="pre">upload_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.upload_time" title="Permalink to this definition">#</a></dt>
+<dd><p>The time this file was uploaded on</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.upload_time_tz">
+<span class="sig-name descname"><span class="pre">upload_time_tz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.upload_time_tz" title="Permalink to this definition">#</a></dt>
+<dd><p>The time this file was uploaded on in UTC and compliant with ISO 8601</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.url" title="Permalink to this definition">#</a></dt>
+<dd><p>The URL for this release file</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.yanked">
+<span class="sig-name descname"><span class="pre">yanked</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.yanked" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether this package was yanked</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.ReleaseFile.yanked_reason">
+<span class="sig-name descname"><span class="pre">yanked_reason</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.ReleaseFile.yanked_reason" title="Permalink to this definition">#</a></dt>
+<dd><p>Why the package was yanked if applicable</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Stats">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypiwrap.objects.pypi.</span></span><span class="sig-name descname"><span class="pre">Stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../utils.html#pypiwrap.utils.Size" title="pypiwrap.utils.Size"><span class="pre">Size</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_packages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../utils.html#pypiwrap.utils.Size" title="pypiwrap.utils.Size"><span class="pre">Size</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypiwrap.objects.pypi.Stats" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIObject</span></code></p>
+<p>Statistics about PyPI</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Stats.top_packages">
+<span class="sig-name descname"><span class="pre">top_packages</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../utils.html#pypiwrap.utils.Size" title="pypiwrap.utils.Size"><span class="pre">Size</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Stats.top_packages" title="Permalink to this definition">#</a></dt>
+<dd><p>Mapping of top packages sorted by size</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Stats.total_size">
+<span class="sig-name descname"><span class="pre">total_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../utils.html#pypiwrap.utils.Size" title="pypiwrap.utils.Size"><span class="pre">Size</span></a></em><a class="headerlink" href="#pypiwrap.objects.pypi.Stats.total_size" title="Permalink to this definition">#</a></dt>
+<dd><p>The total size of all packages on PyPI combined</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Vulnerability">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypiwrap.objects.pypi.</span></span><span class="sig-name descname"><span class="pre">Vulnerability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aliases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed_in</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">withdrawn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypiwrap.objects.pypi.Vulnerability" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIObject</span></code></p>
+<p>A vulnerability in a project or release</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Vulnerability.aliases">
+<span class="sig-name descname"><span class="pre">aliases</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Vulnerability.aliases" title="Permalink to this definition">#</a></dt>
+<dd><p>The names used to refer to this vulnerability</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Vulnerability.details">
+<span class="sig-name descname"><span class="pre">details</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Vulnerability.details" title="Permalink to this definition">#</a></dt>
+<dd><p>Details about the vulnerability</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Vulnerability.fixed_in">
+<span class="sig-name descname"><span class="pre">fixed_in</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Vulnerability.fixed_in" title="Permalink to this definition">#</a></dt>
+<dd><p>Releases where this vulnerability was fixed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Vulnerability.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Vulnerability.id" title="Permalink to this definition">#</a></dt>
+<dd><p>Identifier for this vulnerability</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Vulnerability.link">
+<span class="sig-name descname"><span class="pre">link</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Vulnerability.link" title="Permalink to this definition">#</a></dt>
+<dd><p>A URL where more information is provided about this vulnerability</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Vulnerability.source">
+<span class="sig-name descname"><span class="pre">source</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Vulnerability.source" title="Permalink to this definition">#</a></dt>
+<dd><p>The source from where this vulnerability report was obtained</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Vulnerability.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Vulnerability.summary" title="Permalink to this definition">#</a></dt>
+<dd><p>A short summary of this vulnerability if available</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypiwrap.objects.pypi.Vulnerability.withdrawn">
+<span class="sig-name descname"><span class="pre">withdrawn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pypiwrap.objects.pypi.Vulnerability.withdrawn" title="Permalink to this definition">#</a></dt>
+<dd><p>The datetime this vulnerability was withdrawn</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="simple.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Simple Objects Reference</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../exceptions.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Exceptions Reference</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Angel Carias
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">PyPI Objects Reference</a><ul>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project"><code class="docutils literal notranslate"><span class="pre">Project</span></code></a><ul>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.author"><code class="docutils literal notranslate"><span class="pre">Project.author</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.author_email"><code class="docutils literal notranslate"><span class="pre">Project.author_email</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.bugtrack_url"><code class="docutils literal notranslate"><span class="pre">Project.bugtrack_url</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.classifiers"><code class="docutils literal notranslate"><span class="pre">Project.classifiers</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.description"><code class="docutils literal notranslate"><span class="pre">Project.description</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.description_content_type"><code class="docutils literal notranslate"><span class="pre">Project.description_content_type</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.docs_url"><code class="docutils literal notranslate"><span class="pre">Project.docs_url</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.download_url"><code class="docutils literal notranslate"><span class="pre">Project.download_url</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.file_urls"><code class="docutils literal notranslate"><span class="pre">Project.file_urls</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.home_page"><code class="docutils literal notranslate"><span class="pre">Project.home_page</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.keywords"><code class="docutils literal notranslate"><span class="pre">Project.keywords</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.last_serial"><code class="docutils literal notranslate"><span class="pre">Project.last_serial</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.license"><code class="docutils literal notranslate"><span class="pre">Project.license</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.maintainer"><code class="docutils literal notranslate"><span class="pre">Project.maintainer</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.maintainer_email"><code class="docutils literal notranslate"><span class="pre">Project.maintainer_email</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.name"><code class="docutils literal notranslate"><span class="pre">Project.name</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.package_url"><code class="docutils literal notranslate"><span class="pre">Project.package_url</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.platform"><code class="docutils literal notranslate"><span class="pre">Project.platform</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.project_url"><code class="docutils literal notranslate"><span class="pre">Project.project_url</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.project_urls"><code class="docutils literal notranslate"><span class="pre">Project.project_urls</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.release_url"><code class="docutils literal notranslate"><span class="pre">Project.release_url</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.requires_dist"><code class="docutils literal notranslate"><span class="pre">Project.requires_dist</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.requires_python"><code class="docutils literal notranslate"><span class="pre">Project.requires_python</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.summary"><code class="docutils literal notranslate"><span class="pre">Project.summary</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.version"><code class="docutils literal notranslate"><span class="pre">Project.version</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.vulnerabilities"><code class="docutils literal notranslate"><span class="pre">Project.vulnerabilities</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.yanked"><code class="docutils literal notranslate"><span class="pre">Project.yanked</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Project.yanked_reason"><code class="docutils literal notranslate"><span class="pre">Project.yanked_reason</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile"><code class="docutils literal notranslate"><span class="pre">ReleaseFile</span></code></a><ul>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.comment_text"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.comment_text</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.digests"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.digests</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.filename"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.filename</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.has_sig"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.has_sig</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.package_type"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.package_type</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.python_version"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.python_version</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.requires_python"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.requires_python</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.size"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.size</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.upload_time"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.upload_time</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.upload_time_tz"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.upload_time_tz</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.url"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.url</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.yanked"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.yanked</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.ReleaseFile.yanked_reason"><code class="docutils literal notranslate"><span class="pre">ReleaseFile.yanked_reason</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Stats"><code class="docutils literal notranslate"><span class="pre">Stats</span></code></a><ul>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Stats.top_packages"><code class="docutils literal notranslate"><span class="pre">Stats.top_packages</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Stats.total_size"><code class="docutils literal notranslate"><span class="pre">Stats.total_size</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Vulnerability"><code class="docutils literal notranslate"><span class="pre">Vulnerability</span></code></a><ul>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Vulnerability.aliases"><code class="docutils literal notranslate"><span class="pre">Vulnerability.aliases</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Vulnerability.details"><code class="docutils literal notranslate"><span class="pre">Vulnerability.details</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Vulnerability.fixed_in"><code class="docutils literal notranslate"><span class="pre">Vulnerability.fixed_in</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Vulnerability.id"><code class="docutils literal notranslate"><span class="pre">Vulnerability.id</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Vulnerability.link"><code class="docutils literal notranslate"><span class="pre">Vulnerability.link</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Vulnerability.source"><code class="docutils literal notranslate"><span class="pre">Vulnerability.source</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Vulnerability.summary"><code class="docutils literal notranslate"><span class="pre">Vulnerability.summary</span></code></a></li>
+<li><a class="reference internal" href="#pypiwrap.objects.pypi.Vulnerability.withdrawn"><code class="docutils literal notranslate"><span class="pre">Vulnerability.withdrawn</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=def9ab29"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=ccdb6887"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

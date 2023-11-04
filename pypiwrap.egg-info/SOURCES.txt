@@ -1,0 +1,16 @@
+LICENSE
+README.md
+pyproject.toml
+pypiwrap/__init__.py
+pypiwrap/client.py
+pypiwrap/exceptions.py
+pypiwrap/utils.py
+pypiwrap.egg-info/PKG-INFO
+pypiwrap.egg-info/SOURCES.txt
+pypiwrap.egg-info/dependency_links.txt
+pypiwrap.egg-info/requires.txt
+pypiwrap.egg-info/top_level.txt
+pypiwrap/objects/__init__.py
+pypiwrap/objects/base.py
+pypiwrap/objects/pypi.py
+pypiwrap/objects/simple.py

@@ -1,0 +1,7 @@
+requests
+
+[docs]
+Sphinx
+sphinx-design
+furo
+sphinx-copybutton
