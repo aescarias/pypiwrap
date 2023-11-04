@@ -9,19 +9,24 @@ from ..utils import Size, iso_to_datetime, remove_additional
 
 @dataclass
 class Project(APIObject):
-    """A PyPi project"""
+    """A PyPI project. This includes information about the project, its releases, 
+    and vulnerabilities."""
 
     author: str
-    """The author of the project"""
+    """The author of this project"""
 
     author_email: str
     """The email of the project's author"""
 
     bugtrack_url: str | None
-    """A bug tracking URL if available"""
+    """A bug tracking URL if available
+    
+    .. deprecated:: 1.1.
+       Will be removed in 2.0. Check for a bugtrack URL in :attr:`.project_urls` instead.
+    """
 
     classifiers: list[str]
-    """A list of PyPi [classifiers](https://pypi.org/classifiers) for this project"""
+    """A list of PyPI [classifiers](https://pypi.org/classifiers) for this project"""
 
     description: str
     """A description of the project"""
@@ -54,7 +59,7 @@ class Project(APIObject):
     """The name of the project"""
 
     package_url: str
-    """The PyPi package URL"""
+    """The PyPI package URL. Read :attr:`.project_url` for details."""
 
     platform: str | None
     """The release's platform target if any specified"""
@@ -63,7 +68,11 @@ class Project(APIObject):
     """A mapping of labels to URLs relating to the project"""
 
     project_url: str
-    """The PyPi project's URL"""
+    """The PyPI project's URL.
+    
+    :attr:`.package_url` and :attr:`.project_url` are effectively the same value.
+    This attribute should be preferred ([see this](https://github.com/pypi/warehouse/issues/3206))
+    """
 
     release_url: str
     """The project URL relating to this specific release"""
@@ -93,6 +102,7 @@ class Project(APIObject):
     """A list of vulnerabilities for this release if any"""
 
     last_serial: int
+    """This is an internal value used by PyPI to indicate last modification."""
 
     @classmethod
     def _from_raw(cls, data: dict) -> Project:
@@ -135,13 +145,13 @@ class Vulnerability(APIObject):
     """Identifier for this vulnerability"""
     
     link: str
-    """An URL where more information is provided about the vulnerability"""
+    """A URL where more information is provided about this vulnerability"""
     
     source: str
     """The source from where this vulnerability report was obtained"""
 
     summary: str | None
-    """A short summary of the vulnerability if available"""
+    """A short summary of this vulnerability if available"""
 
     withdrawn: datetime | None = None
     """The datetime this vulnerability was withdrawn"""
@@ -159,7 +169,7 @@ class Vulnerability(APIObject):
 
 @dataclass
 class ReleaseFile(APIObject):
-    """A file part of a release"""
+    """A file part of a PyPI release"""
 
     comment_text: str
     """A comment for this release"""
@@ -178,7 +188,12 @@ class ReleaseFile(APIObject):
     """The filename for this release file"""
    
     has_sig: bool
-    """Whether this release file has a PGP signature attached to it"""
+    """Whether this release file has a PGP/GPG signature attached to it.
+    
+    .. deprecated:: 1.1
+        Will be removed in 2.0. If you need a signature, provide the :attr:`.url` 
+        attribute to :func:`pypiwrap.utils.gpg_from_url`.
+    """
 
     package_type: str  # API: packagetype
     """The type of release file. It can be either of:
@@ -190,7 +205,7 @@ class ReleaseFile(APIObject):
     python_version: str
     """The general Python version target for this file.
     
-    It is `source` for source distributions and a version target for built distributions.
+    It is 'source' for source distributions and a version target for built distributions.
     """
 
     requires_python: str

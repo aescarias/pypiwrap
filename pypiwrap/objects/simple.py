@@ -20,7 +20,7 @@ class DistributionFile(APIObject):
     """The size of the distribution"""
 
     hashes: dict[str, str]
-    """A mapping of hashes for this file. Similar to :attr:`ReleaseFile.digests`."""
+    """A mapping of hashes for this file. Similar to :attr:`.ReleaseFile.digests`."""
 
     upload_time: datetime | None = None
     """The upload time for this file"""
@@ -28,10 +28,16 @@ class DistributionFile(APIObject):
     requires_python: str | None = None
     """The version constraints for this file if specified"""
 
-    dist_info_metadata: bool | dict[str, str] | None = None
+    core_metadata: bool | dict[str, str] | None = None
     """
     - If a boolean, whether this file has associated metadata.
     - If a dictionary, a mapping of hashes to encoded metadata file hashes.
+    """
+
+    dist_info_metadata: bool | dict[str, str] | None = None
+    """
+    Contains the same values as :attr:`DistributionFile.core_metadata`. Where available, 
+    prefer the use of ``core_metadata`` over this attribute.
     """
 
     has_sig: bool | None = None  # API: gpg_sig
@@ -67,13 +73,13 @@ class ProjectPage(APIObject):
     """A Simple project page"""
 
     name: str
-    """The name of the project"""
+    """The name of this project"""
     
     versions: list[str]
-    """A list of all available versions of the project"""
+    """A list of all available versions for this project"""
     
     files: list[DistributionFile]
-    """A list of distribution files for the project"""
+    """A list of distribution files for this project"""
 
     @classmethod
     def _from_raw(cls, data: dict) -> ProjectPage:
