@@ -31,10 +31,12 @@ class Size(NamedTuple):
     def __int__(self) -> int:
         return self.bytes
 
-
 def iso_to_datetime(iso: str) -> datetime:
-    """Convert an ISO 8601 string to a datetime object"""
-    return datetime.strptime(iso, "%Y-%m-%dT%H:%M:%S.%f%z")
+    """Converts an ISO 8601 string to a datetime object"""
+    try:
+        return datetime.strptime(iso, "%Y-%m-%dT%H:%M:%S.%f%z")
+    except ValueError:
+        return datetime.strptime(iso, "%Y-%m-%dT%H:%M:%S%z")
 
 def gpg_from_url(url: str) -> str | None:
     """Gets the GPG signature of a file from its URL if available"""
@@ -44,8 +46,16 @@ def gpg_from_url(url: str) -> str | None:
         return rs.text
 
 # where unit is either of 'si' or 'iec'
-def bytes_to_readable(num: float, unit: str = 'si') -> str:
-    """Converts a number (in bytes) to a human-readable string representation"""
+def bytes_to_readable(num: int, unit: str = 'si') -> str:
+    """Converts a number (in bytes) to a human-readable string representation
+    
+    Arguments:
+        number (:class:`int`): A value in bytes.
+
+        unit (:class:`str`, optional): 
+            Determines how to represent the output. This is either  ``si`` 
+            (for decimal [MB]; default) or ``iec`` (for binary [MiB]).
+    """
     if unit == 'iec':
         suffixes = IEC_SUFFIXES
         step_unit = 1024
@@ -58,13 +68,17 @@ def bytes_to_readable(num: float, unit: str = 'si') -> str:
     for suffix in suffixes:
         if num < step_unit:
             break
-        num /= step_unit
+        num /= step_unit # type: ignore
     
     return f"{num:.2f} {suffix or suffixes[-1]}"
 
 def remove_additional(cls: type[Any], data: dict[str, Any]) -> dict[str, Any]:
     """Takes any dataclass and a dictionary that can unpack to it
-    and strips any additional keys not part of the dataclass"""
+    and discards any additional keys not part of the dataclass.
+    
+    Returns:
+        A ``dict`` that can safely unpack to the dataclass.
+    """
 
     result = data.copy()
     names = [field.name for field in dataclasses.fields(cls)]

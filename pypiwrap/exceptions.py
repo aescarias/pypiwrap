@@ -8,7 +8,7 @@ def raise_for_status(
     """Raises an exception based on the response's status code.
     If the status code is deemed OK, this will do nothing.
     
-    Args:
+    Arguments:
         rs (:class:`requests.Response`): The response itself.
 
         messages (:class:`dict[int, str]`, optional):
