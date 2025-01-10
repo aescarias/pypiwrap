@@ -5,7 +5,7 @@
 ![GitHub](https://img.shields.io/github/license/aescarias/pypiwrap?style=flat-square)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pypiwrap?style=flat-square)
 
-[Documentation](https://aescarias.github.io/pypiwrap) - [PyPI](https://pypi.org/project/pypiwrap)
+[Documentation](https://pypiwrap.rtfd.io/) - [PyPI](https://pypi.org/project/pypiwrap)
 
 pypiwrap is an API wrapper for the Python Package Index (PyPI) providing interfaces for retrieving project information, releases and statistics from the [PyPI JSON API](https://docs.pypi.org/api/json/), the [Statistics API](https://docs.pypi.org/api/stats/), and the [Index API](https://docs.pypi.org/api/index-api/).
 
