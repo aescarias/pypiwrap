@@ -1,0 +1,65 @@
+Features
+========
+
+The following is a list of PEPs, specs and APIs related to PyPI.
+
+Note that some features in pypiwrap have been implemented according to the examples in the `PyPI API documentation <https://docs.pypi.org/api/>`_. Some aspects in the API have been implemented according to the issues & source code of the `Warehouse project <https://github.com/pypi/warehouse/>`_ powering PyPI.
+
+
+PyPI/Warehouse APIs
+-------------------
+
+.. list-table:: APIs, feeds, and datasets
+    :header-rows: 1
+
+    * - Feature
+      - Supported?
+      - Notes
+    * - `Index API <https://docs.pypi.org/api/index-api/>`_
+      - Yes
+      - See :class:`pypiwrap.client.SimpleRepoClient`.
+    * - `PyPI JSON API <https://docs.pypi.org/api/json/>`_
+      - Yes
+      - See :meth:`pypiwrap.client.PyPIClient.get_project`.
+    * - `Upload API <https://docs.pypi.org/api/upload/>`_
+      - No
+      -
+    * - `Integrity API <https://docs.pypi.org/api/integrity/>`_
+      - No
+      -
+    * - `Stats API <https://docs.pypi.org/api/stats/>`_
+      - Yes
+      - See :meth:`pypiwrap.client.PyPIClient.get_stats`.
+    * - `BigQuery datasets <https://docs.pypi.org/api/bigquery/>`_
+      - No
+      -
+    * - `RSS feeds <https://docs.pypi.org/api/feeds/>`_
+      - No
+      -
+    * - `Secret reporting API <https://docs.pypi.org/api/secrets/>`_
+      - No
+      - This API is designed for private use. There's currently no intention to implement it.
+
+
+PEPs relating to PyPI
+---------------------
+
+.. list-table:: PEPs
+    :header-rows: 1
+
+    * - PEP
+      - Notable features
+      - Supported?
+      - Notes
+    * - `PEP 503 - Simple Repository API <https://peps.python.org/pep-0503/>`_
+      - 
+      - Yes
+      - pypiwrap will always use the JSON API. See PEP 691.
+    * - `PEP 691 - JSON-based Simple API for Python Package Indexes <https://peps.python.org/pep-0691/>`_
+      - 
+      - Yes
+      - See :class:`pypiwrap.client.SimpleRepoClient`.
+    * - `PEP 639 - Improving License Clarity with Better Package Metadata <https://peps.python.org/pep-0639/>`_
+      - ``License-Expression`` and the ``license-files`` key
+      - Yes
+      -

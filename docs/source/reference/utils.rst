@@ -1,7 +1,7 @@
 Utils Reference
 ===============
 
-The ``utils`` module provides utilities used within the project.
+This module provides utilities used within the project.
 
 .. automodule:: pypiwrap.utils
    :members:

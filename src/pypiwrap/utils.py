@@ -2,61 +2,65 @@ from __future__ import annotations
 
 import dataclasses
 from datetime import datetime
-from typing import NamedTuple, Any
+from typing import Any, Literal, NamedTuple
 
 import requests
 
-SI_SUFFIXES  = ["B", "KB", "MB", "GB", "TB"]
+SI_SUFFIXES = ["B", "KB", "MB", "GB", "TB"]
 IEC_SUFFIXES = ["B", "KiB", "MiB", "GiB", "TiB"]
 
 
 class Size(NamedTuple):
-    """A tuple that includes human-readable representations of a file size"""
+    """A tuple that includes human-readable representations of a file size."""
 
     bytes: int
-    """The size represented in bytes"""
+    """The size represented in bytes."""
+
     iec: str
-    """The size represented in binary/IEC units (KiB, MiB)"""
+    """The size represented in binary/IEC units (KiB, MiB)."""
+
     si: str
-    """The size represented in decimal/SI units (KB, MB)"""
+    """The size represented in decimal/SI units (KB, MB)."""
 
     @classmethod
     def from_int(cls, num: int) -> Size:
         return Size(
-            num, 
-            iec=bytes_to_readable(num, 'iec'), 
-            si=bytes_to_readable(num, 'si')
+            num, iec=bytes_to_readable(num, "iec"), si=bytes_to_readable(num, "si")
         )
 
     def __int__(self) -> int:
         return self.bytes
 
+
 def iso_to_datetime(iso: str) -> datetime:
-    """Converts an ISO 8601 string to a datetime object"""
+    """Converts an ISO 8601 string to a datetime object."""
+
     try:
         return datetime.strptime(iso, "%Y-%m-%dT%H:%M:%S.%f%z")
     except ValueError:
         return datetime.strptime(iso, "%Y-%m-%dT%H:%M:%S%z")
 
+
 def gpg_from_url(url: str) -> str | None:
-    """Gets the GPG signature of a file from its URL if available"""
+    """Returns the GPG signature of a file from its ``url`` if any."""
 
     rs = requests.get(url + ".asc")
     if rs.ok:
         return rs.text
 
-# where unit is either of 'si' or 'iec'
-def bytes_to_readable(num: int, unit: str = 'si') -> str:
-    """Converts a number (in bytes) to a human-readable string representation
-    
-    Arguments:
-        number (:class:`int`): A value in bytes.
 
-        unit (:class:`str`, optional): 
-            Determines how to represent the output. This is either  ``si`` 
-            (for decimal [MB]; default) or ``iec`` (for binary [MiB]).
+def bytes_to_readable(number: float, unit: Literal["si", "iec"] = "si") -> str:
+    """Converts a number (in bytes) to a human-readable string representation.
+
+    Arguments:
+        number (:class:`float`):
+            A value in bytes.
+
+        unit (:class:`str`, optional):
+            Units to use when representing the result. May be ``si`` for decimal (MB) units
+            which is the default or ``iec`` for binary (MiB) units.
     """
-    if unit == 'iec':
+    if unit == "iec":
         suffixes = IEC_SUFFIXES
         step_unit = 1024
     else:
@@ -66,16 +70,17 @@ def bytes_to_readable(num: int, unit: str = 'si') -> str:
     # last one is assumed to be greatest
     suffix = None
     for suffix in suffixes:
-        if num < step_unit:
+        if number < step_unit:
             break
-        num /= step_unit # type: ignore
-    
-    return f"{num:.2f} {suffix or suffixes[-1]}"
+        number /= step_unit
+
+    return f"{number:.2f} {suffix or suffixes[-1]}"
+
 
 def remove_additional(cls: type[Any], data: dict[str, Any]) -> dict[str, Any]:
-    """Takes any dataclass and a dictionary that can unpack to it
-    and discards any additional keys not part of the dataclass.
-    
+    """Takes any dataclass ``cls`` and a dictionary ``data`` that can unpack to
+    it and discards any additional keys not part of the dataclass.
+
     Returns:
         A ``dict`` that can safely unpack to the dataclass.
     """

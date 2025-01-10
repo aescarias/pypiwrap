@@ -6,16 +6,14 @@
 pypiwrap
 ========
 
-``pypiwrap`` is a simple API wrapper for the Python Package Index (PyPI). 
+pypiwrap is an API wrapper for the Python Package Index (PyPI), providing interfaces for the JSON API, the Stats API, and the Index API.
 
-It provides interfaces to the **JSON and Stats API** and the **Simple API**.
-It allows users to quickly fetch information about projects on PyPI or any compatible
-repositories.
+For information on supported features, see :ref:`Features`.
 
 Installation
 ------------
 
-**At least Python 3.7 or higher is required.** 
+pypiwrap requires Python 3.9 or higher.
 
 .. tab-set::
 
@@ -33,51 +31,61 @@ Installation
 
 
 .. tip::
-   If you plan to work with other packages along ``pypiwrap``, we recommend you do so in a virtual environment so as to isolate
-   it from other existing packages in the system.
+   If you plan to work with other packages along ``pypiwrap``, we recommend you do so in a virtual environment so as to isolate it from other existing packages in the system.
 
 Quickstart
 ----------
 
 ``pypiwrap`` provides two clients for interacting with PyPI:
 
-* :class:`~pypiwrap.client.SimpleClient` allows access to data from 
-  the PyPI Simple Repository.  
-* :class:`~pypiwrap.client.PyPIClient` allows access to data from
-  the PyPI website itself.
+* :class:`~pypiwrap.client.SimpleRepoClient` allows access to data from the PyPI Simple Repository API (also known as the Index API).
+* :class:`~pypiwrap.client.PyPIClient` allows access to data from the PyPI JSON API.
 
-**Example 1: Fetching details about a project**
+Examples
+--------
 
-.. code-block:: python
-
-   import pypiwrap
-
-   with pypiwrap.PyPIClient() as wrap:
-      proj = wrap.get_project("requests")
-      print(f"{proj.name} by {proj.author}") # requests by Kenneth Reitz
-
-**Example 2: Getting the latest distribution file for a project**
+Example 1: Fetching details about a project
 
 .. code-block:: python
 
    import pypiwrap
 
-   wrap = pypiwrap.SimpleClient()
-   proj = wrap.get_page("requests")
+   with pypiwrap.PyPIClient() as pypi:
+       project = pypi.get_project("requests")
+       print(f"{project.name} by {project.author}")  # requests by Kenneth Reitz
 
-   print(proj.files[-1].url)
+Example 2: Getting the latest distribution file for a project
 
-More documentation can be found in the :ref:`Client Reference`.
+.. code-block:: python
+
+   import pypiwrap
+
+   with pypiwrap.SimpleRepoClient() as repo:
+       project = repo.get_page("requests")
+      
+       print(project.files[-1].url)
+
+
+More documentation can be found in the :ref:`Client reference`.
+
+Table of Contents
+-----------------
+
+.. toctree:: 
+   :maxdepth: 2
+   :caption: Guides
+
+   Features <guides/features>
 
 .. toctree::
    :maxdepth: 2
-   :caption: Reference
-   
+   :caption: API Reference
+
    Client <reference/client>
    Exceptions <reference/exceptions>
    PyPI Objects <reference/objects/pypi>
-   Simple Objects <reference/objects/simple>
-   Utils <reference/utils>
+   Simple Repository Objects <reference/objects/simple_repo>
+   Utilities <reference/utils>
 
 .. toctree::
    :maxdepth: 2
