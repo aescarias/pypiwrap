@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Any
 
 from ..utils import Size, iso_to_datetime, remove_additional
 from .base import APIObject
@@ -29,7 +30,7 @@ class DistributionFile(APIObject):
     requires_python: str | None = None
     """The version constraints for this file if specified.
     
-    This is equivalent to the Requires-Python key in the Core metadata spec.
+    This is equivalent to the 'Requires-Python' key in the Core metadata spec.
     """
 
     core_metadata: bool | dict[str, str] | None = None
@@ -48,8 +49,14 @@ class DistributionFile(APIObject):
     When available, prefer using ``core_metadata`` over this attribute.
     """
 
-    has_sig: bool | None = None  # API: gpg_sig
-    """Whether a GPG signature for this file exists."""
+    provenance_url: str | None = None  # API: provenance
+    """If available, a URL to the file's associated provenance.
+    
+    See https://peps.python.org/pep-0740/#provenance-objects for details.
+    """
+
+    has_gpg_sig: bool | None = None  # API: gpg_sig
+    """Whether a GPG signature for this file exists. If none, this value is unknown."""
 
     yanked: bool | str | None = None
     """
@@ -58,16 +65,18 @@ class DistributionFile(APIObject):
     """
 
     @classmethod
-    def from_raw(cls, data: dict) -> DistributionFile:
+    def from_raw(cls, data: dict[str, Any]) -> DistributionFile:
         # Certain API attributes, like requires-python, must be converted
         # to snake_case before unpacking
         result = {key.replace("-", "_"): val for key, val in data.items()}
 
-        result["has_sig"] = result.get("gpg_sig")
+        result["has_gpg_sig"] = result.get("gpg_sig")
         result["size"] = Size.from_int(result["size"])
 
         # See https://peps.python.org/pep-0714/ for why this is here.
-        result["dist_info_metadata"] = result.pop("data_dist_info_metadata")
+        result["dist_info_metadata"] = result.pop("data_dist_info_metadata", None)
+
+        result["provenance_url"] = result.pop("provenance", None)
 
         if result.get("upload_time") is not None:
             result["upload_time"] = iso_to_datetime(result["upload_time"])
@@ -79,11 +88,66 @@ class DistributionFile(APIObject):
 
 
 @dataclass
+class Meta(APIObject):
+    """Information about a response from the Simple Repository API."""
+
+    api_version: str
+    """The API version being implemented. 
+    
+    See https://peps.python.org/pep-0629/ for details.
+    """
+
+    tracks: list[str]
+    """If a repository, a list of project/repository URLs being "tracked" by the 
+    extending repository.
+    
+    See https://peps.python.org/pep-0708/#repository-tracks-metadata for details.
+    """
+
+    @classmethod
+    def from_raw(cls, data: dict[str, Any]) -> Meta:
+        return Meta(api_version=data["api-version"], tracks=data.get("tracks", []))
+
+    def __repr__(self) -> str:
+        return self._build_repr_string(api_version=self.api_version)
+
+
+@dataclass
+class IndexPage(APIObject):
+    """The index page of the Simple Repository API."""
+
+    meta: Meta
+    """Information about the response."""
+
+    projects: list[str]
+    """A list of projects in the index."""
+
+    @classmethod
+    def from_raw(cls, data: dict[str, Any]) -> IndexPage:
+        return cls(
+            meta=Meta.from_raw(data["meta"]),
+            projects=[proj["name"] for proj in data["projects"]],
+        )
+
+    def __repr__(self) -> str:
+        return self._build_repr_string(self.meta.api_version)
+
+
+@dataclass
 class ProjectPage(APIObject):
-    """A project page from the Index API."""
+    """A project page from the Simple Repository API."""
+
+    meta: Meta
+    """Information about the response."""
 
     name: str
     """The name of this project."""
+
+    alternate_locations: list[str]
+    """If a repository, a list of alternate locations or namespaces for this project. 
+    
+    See https://peps.python.org/pep-0708/#alternate-locations-metadata for details.
+    """
 
     versions: list[str]
     """A list of all available versions for this project."""
@@ -92,9 +156,16 @@ class ProjectPage(APIObject):
     """A list of distribution files for this project."""
 
     @classmethod
-    def from_raw(cls, data: dict) -> ProjectPage:
+    def from_raw(cls, data: dict[str, Any]) -> ProjectPage:
         files = [DistributionFile.from_raw(pkg_file) for pkg_file in data["files"]]
-        return cls(name=data["name"], versions=data["versions"], files=files)
+
+        return cls(
+            meta=Meta.from_raw(data["meta"]),
+            name=data["name"],
+            alternate_locations=data.get("alternate-locations", []),
+            versions=data["versions"],
+            files=files,
+        )
 
     def __repr__(self) -> str:
         return self._build_repr_string(self.name)

@@ -1,12 +1,10 @@
 from __future__ import annotations
 
-from collections.abc import Generator
-
 import requests
 
 from ._version import __version__
 from .exceptions import raise_for_status
-from .objects import Project, ProjectPage, Stats
+from .objects import IndexPage, Project, ProjectPage, Stats
 
 PYPI_HOST = "https://pypi.org"
 SIMPLE_CONTENT_TYPE = "application/vnd.pypi.simple.v1+json"
@@ -75,19 +73,18 @@ class SimpleRepoClient:
     def __exit__(self, *exc_args) -> None:
         self.rest.close()
 
-    def get_index(self) -> Generator[str, None, None]:
-        """Yields a list of names for all projects registered on this repository."""
+    def get_index_page(self) -> IndexPage:
+        """Gets the index page for this repository."""
 
         response = self.rest.get(f"{self.host}/simple")
         raise_for_status(response)
 
-        for project in response.json()["projects"]:
-            yield project["name"]
+        return IndexPage.from_raw(response.json())
 
-    def get_page(self, project: str) -> ProjectPage:
+    def get_project_page(self, project: str) -> ProjectPage:
         """Gets the page for a given ``project``."""
 
-        rs = self.rest.get(f"{self.host}/simple/{project}")
-        raise_for_status(rs)
+        response = self.rest.get(f"{self.host}/simple/{project}")
+        raise_for_status(response)
 
-        return ProjectPage.from_raw(rs.json())
+        return ProjectPage.from_raw(response.json())

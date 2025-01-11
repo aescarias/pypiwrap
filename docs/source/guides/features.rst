@@ -48,18 +48,20 @@ PEPs relating to PyPI
     :header-rows: 1
 
     * - PEP
-      - Notable features
       - Supported?
       - Notes
     * - `PEP 503 - Simple Repository API <https://peps.python.org/pep-0503/>`_
-      - 
       - Yes
       - pypiwrap will always use the JSON API. See PEP 691.
     * - `PEP 691 - JSON-based Simple API for Python Package Indexes <https://peps.python.org/pep-0691/>`_
-      - 
       - Yes
       - See :class:`pypiwrap.client.SimpleRepoClient`.
     * - `PEP 639 - Improving License Clarity with Better Package Metadata <https://peps.python.org/pep-0639/>`_
-      - ``License-Expression`` and the ``license-files`` key
       - Yes
-      -
+      - This PEP introduces the ``License-Expression`` and ``License-Files`` keys.
+    * - `PEP 708 - Extending the Repository API to Mitigate Dependency Confusion Attacks <https://peps.python.org/pep-0708/#alternate-locations-metadata>`_
+      - Yes
+      - This PEP introduces the ``tracks`` and ``alternate-locations`` keys.
+    * - `PEP 740 - Index support for digital attestations <https://peps.python.org/pep-0740/>`_
+      - Partially
+      - This PEP introduces provenance objects and attestations. Only the ``provenance`` field returned by the Simple Repository API is recognized.

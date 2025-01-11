@@ -35,7 +35,7 @@ with pypiwrap.PyPIClient() as pypi:
 
 # Fetching data from the Index API
 with pypiwrap.SimpleRepoClient() as repo:
-    page = repo.get_page("requests")
+    page = repo.get_project_page("requests")
     
     print(page.files[-1].url)  # https://files.pythonhosted.org/packages/63/70/[...]
     print(page.files[-1].size.si)  # 131.22 KB

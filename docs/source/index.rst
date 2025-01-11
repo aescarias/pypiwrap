@@ -61,7 +61,7 @@ Example 2: Getting the latest distribution file for a project
    import pypiwrap
 
    with pypiwrap.SimpleRepoClient() as repo:
-       project = repo.get_page("requests")
+       project = repo.get_project_page("requests")
       
        print(project.files[-1].url)
 

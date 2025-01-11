@@ -215,7 +215,7 @@ class ReleaseFile(APIObject):
     requires_python: str
     """The Python version constraints for this file. 
     
-    This is equivalent to the Requires-Python key in the Core metadata specification.
+    This is equivalent to the 'Requires-Python' key in the Core metadata specification.
     """
 
     size: Size
@@ -269,14 +269,17 @@ class Stats(APIObject):
 
     @classmethod
     def from_raw(cls, data: dict[str, Any]) -> Stats:
-        top_pkgs_sort = sorted(
-            data["top_packages"].items(), key=lambda it: it[1]["size"]
+        sorted_packages = sorted(
+            data["top_packages"].items(), key=lambda item: item[1]["size"]
         )
 
-        top_pkgs = {name: Size.from_int(pkg["size"]) for name, pkg in top_pkgs_sort}
+        top_packages = {
+            name: Size.from_int(package["size"]) for name, package in sorted_packages
+        }
 
         return cls(
-            total_size=Size.from_int(data["total_packages_size"]), top_packages=top_pkgs
+            total_size=Size.from_int(data["total_packages_size"]),
+            top_packages=top_packages,
         )
 
     def __repr__(self) -> str:
