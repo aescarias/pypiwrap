@@ -9,7 +9,7 @@ class APIObject:
     """A base API object."""
 
     @classmethod
-    def from_raw(cls, data: dict[str, Any]) -> APIObject:
+    def from_json(cls, data: dict[str, Any]) -> APIObject:
         return cls(**remove_additional(cls, data.copy()))
 
     def __init__(self, *args, **kwargs) -> None:

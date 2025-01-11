@@ -41,3 +41,9 @@ class NotFound(ClientError):
     """Raised when a project, release, or file was not found."""
 
     pass
+
+
+class ParseError(Exception):
+    """Raised when an error occurs while parsing a request."""
+
+    pass

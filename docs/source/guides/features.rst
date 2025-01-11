@@ -34,8 +34,8 @@ PyPI/Warehouse APIs
       - No
       -
     * - `RSS feeds <https://docs.pypi.org/api/feeds/>`_
-      - No
-      -
+      - Yes
+      - See :class:`pypiwrap.client.PyPIFeedClient`
     * - `Secret reporting API <https://docs.pypi.org/api/secrets/>`_
       - No
       - This API is designed for private use. There's currently no intention to implement it.

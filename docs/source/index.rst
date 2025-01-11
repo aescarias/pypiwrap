@@ -36,10 +36,11 @@ pypiwrap requires Python 3.9 or higher.
 Quickstart
 ----------
 
-``pypiwrap`` provides two clients for interacting with PyPI:
+``pypiwrap`` provides three clients for interacting with PyPI:
 
 * :class:`~pypiwrap.client.SimpleRepoClient` allows access to data from the PyPI Simple Repository API (also known as the Index API).
 * :class:`~pypiwrap.client.PyPIClient` allows access to data from the PyPI JSON API.
+* :class:`~pypiwrap.client.PyPIFeedClient` allows access to data from the PyPI RSS feeds.
 
 Examples
 --------
@@ -84,6 +85,7 @@ Table of Contents
    Client <reference/client>
    Exceptions <reference/exceptions>
    PyPI Objects <reference/objects/pypi>
+   RSS Objects <reference/objects/rss>
    Simple Repository Objects <reference/objects/simple_repo>
    Utilities <reference/utils>
 

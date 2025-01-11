@@ -65,7 +65,7 @@ class DistributionFile(APIObject):
     """
 
     @classmethod
-    def from_raw(cls, data: dict[str, Any]) -> DistributionFile:
+    def from_json(cls, data: dict[str, Any]) -> DistributionFile:
         # Certain API attributes, like requires-python, must be converted
         # to snake_case before unpacking
         result = {key.replace("-", "_"): val for key, val in data.items()}
@@ -82,6 +82,12 @@ class DistributionFile(APIObject):
             result["upload_time"] = iso_to_datetime(result["upload_time"])
 
         return cls(**remove_additional(cls, result))
+
+    @property
+    def gpg_url(self) -> str | None:
+        """If available, a URL containing the GPG signature for this file."""
+        if self.has_gpg_sig:
+            return self.url + ".asc"
 
     def __repr__(self) -> str:
         return self._build_repr_string(self.filename, size=self.size.si)
@@ -105,7 +111,7 @@ class Meta(APIObject):
     """
 
     @classmethod
-    def from_raw(cls, data: dict[str, Any]) -> Meta:
+    def from_json(cls, data: dict[str, Any]) -> Meta:
         return Meta(api_version=data["api-version"], tracks=data.get("tracks", []))
 
     def __repr__(self) -> str:
@@ -123,9 +129,9 @@ class IndexPage(APIObject):
     """A list of projects in the index."""
 
     @classmethod
-    def from_raw(cls, data: dict[str, Any]) -> IndexPage:
+    def from_json(cls, data: dict[str, Any]) -> IndexPage:
         return cls(
-            meta=Meta.from_raw(data["meta"]),
+            meta=Meta.from_json(data["meta"]),
             projects=[proj["name"] for proj in data["projects"]],
         )
 
@@ -156,11 +162,11 @@ class ProjectPage(APIObject):
     """A list of distribution files for this project."""
 
     @classmethod
-    def from_raw(cls, data: dict[str, Any]) -> ProjectPage:
-        files = [DistributionFile.from_raw(pkg_file) for pkg_file in data["files"]]
+    def from_json(cls, data: dict[str, Any]) -> ProjectPage:
+        files = [DistributionFile.from_json(pkg_file) for pkg_file in data["files"]]
 
         return cls(
-            meta=Meta.from_raw(data["meta"]),
+            meta=Meta.from_json(data["meta"]),
             name=data["name"],
             alternate_locations=data.get("alternate-locations", []),
             versions=data["versions"],

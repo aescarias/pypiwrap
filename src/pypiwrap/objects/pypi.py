@@ -32,7 +32,8 @@ class Project(APIObject):
     """The content type of the description if available.
     
     PyPI supports 3 content types: ``text/plain``, ``text/x-rst`` (reStructuredText), and
-    ``text/markdown``. PyPI will default to RST if no content type is specified.
+    ``text/markdown``. PyPI will default to RST if no content type is specified or to
+    plain text if the content type is invalid.
     """
 
     docs_url: str | None
@@ -115,11 +116,11 @@ class Project(APIObject):
     """The most recent serial ID number for this project."""
 
     @classmethod
-    def from_raw(cls, data: dict[str, Any]) -> Project:
+    def from_json(cls, data: dict[str, Any]) -> Project:
         info = remove_additional(cls, data["info"].copy())
 
-        vulns = list(map(Vulnerability.from_raw, data["vulnerabilities"]))
-        files = list(map(ReleaseFile.from_raw, data["urls"]))
+        vulns = list(map(Vulnerability.from_json, data["vulnerabilities"]))
+        files = list(map(ReleaseFile.from_json, data["urls"]))
 
         if not data["info"].get("requires_dist"):
             data["info"]["requires_dist"] = []
@@ -169,7 +170,7 @@ class Vulnerability(APIObject):
     """The datetime this vulnerability was withdrawn if applicable."""
 
     @classmethod
-    def from_raw(cls, data: dict[str, Any]) -> Vulnerability:
+    def from_json(cls, data: dict[str, Any]) -> Vulnerability:
         if data.get("withdrawn") is not None:
             data["withdrawn"] = iso_to_datetime(data["withdrawn"])
 
@@ -188,7 +189,7 @@ class ReleaseFile(APIObject):
     digests: dict[str, str]
     """A mapping of hash names to hex encoded digests corresponding to this release file.
 
-    Most commonly, the digests available are ``md5``, ``sha256``, and ``blake2b_256``. 
+    Usually, the digests available are ``md5``, ``sha256``, and ``blake2b_256``. 
     The keys available should be members of :attr:`hashlib.algorithms_guaranteed`.
     """
 
@@ -237,7 +238,7 @@ class ReleaseFile(APIObject):
     """Why the package was yanked if applicable."""
 
     @classmethod
-    def from_raw(cls, data: dict[str, Any]) -> ReleaseFile:
+    def from_json(cls, data: dict[str, Any]) -> ReleaseFile:
         data = data.copy()
 
         # Converting values to appropriate types
@@ -268,7 +269,7 @@ class Stats(APIObject):
     """A mapping of top packages sorted by size."""
 
     @classmethod
-    def from_raw(cls, data: dict[str, Any]) -> Stats:
+    def from_json(cls, data: dict[str, Any]) -> Stats:
         sorted_packages = sorted(
             data["top_packages"].items(), key=lambda item: item[1]["size"]
         )

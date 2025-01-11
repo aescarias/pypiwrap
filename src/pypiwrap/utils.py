@@ -4,8 +4,6 @@ import dataclasses
 from datetime import datetime
 from typing import Any, Literal, NamedTuple
 
-import requests
-
 SI_SUFFIXES = ["B", "KB", "MB", "GB", "TB"]
 IEC_SUFFIXES = ["B", "KiB", "MiB", "GiB", "TiB"]
 
@@ -39,14 +37,6 @@ def iso_to_datetime(iso: str) -> datetime:
         return datetime.strptime(iso, "%Y-%m-%dT%H:%M:%S.%f%z")
     except ValueError:
         return datetime.strptime(iso, "%Y-%m-%dT%H:%M:%S%z")
-
-
-def gpg_from_url(url: str) -> str | None:
-    """Returns the GPG signature of a file from its ``url`` if any."""
-
-    rs = requests.get(url + ".asc")
-    if rs.ok:
-        return rs.text
 
 
 def bytes_to_readable(number: float, unit: Literal["si", "iec"] = "si") -> str:
