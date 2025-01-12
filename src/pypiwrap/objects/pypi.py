@@ -19,6 +19,13 @@ class Project(APIObject):
     author_email: str
     """The email or contact details of the project's author."""
 
+    dynamic: list[str]
+    """A list of distribution metadata values marked as Dynamic.
+    
+    Dynamic values are values that are expected to be "filled in later" by build backends.
+    See https://peps.python.org/pep-0643/ for details.
+    """
+
     classifiers: list[str]
     """A list of PyPI classifiers for this project.
     
@@ -94,6 +101,13 @@ class Project(APIObject):
     requires_python: str | None
     """The Python version required for this release."""
 
+    provides_extra: list[str]
+    """A list of optional or extra features provided by the package.
+    
+    See https://peps.python.org/pep-0566/ for details. Distribution extra names should be 
+    valid Python identifiers as defined in https://peps.python.org/pep-0685/.
+    """
+
     summary: str
     """A short summary of the project."""
 
@@ -119,11 +133,13 @@ class Project(APIObject):
     def from_json(cls, data: dict[str, Any]) -> Project:
         info = remove_additional(cls, data["info"].copy())
 
+        info["requires_dist"] = info.get("requires_dist") or []
+        info["provides_extra"] = info.get("provides_extra") or []
+        info["dynamic"] = info.get("dynamic") or []
+        info["license_files"] = info.get("license_files") or []
+
         vulns = list(map(Vulnerability.from_json, data["vulnerabilities"]))
         files = list(map(ReleaseFile.from_json, data["urls"]))
-
-        if not data["info"].get("requires_dist"):
-            data["info"]["requires_dist"] = []
 
         return cls(
             **info,
