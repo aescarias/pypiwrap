@@ -42,15 +42,15 @@ class PyPIFeedClient:
 
     def get_newest_packages(self) -> PyPIFeed:
         """Gets the newest packages created on PyPI."""
-        return self._get_feed(f"{PYPI_HOST}/rss/packages.xml")
+        return self._get_feed(f"{self.host}/rss/packages.xml")
 
     def get_latest_updates(self) -> PyPIFeed:
         """Gets the latest updates for individual projects on PyPI."""
-        return self._get_feed(f"{PYPI_HOST}/rss/updates.xml")
+        return self._get_feed(f"{self.host}/rss/updates.xml")
 
     def get_latest_releases_for_project(self, name: str) -> PyPIFeed:
         """Gets the latest releases for a project ``name``."""
-        return self._get_feed(f"{PYPI_HOST}/rss/project/{name}/releases.xml")
+        return self._get_feed(f"{self.host}/rss/project/{name}/releases.xml")
 
 
 class PyPIClient:

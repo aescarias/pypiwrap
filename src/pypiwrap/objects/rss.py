@@ -66,7 +66,7 @@ class PyPIFeedItem:
 
     @classmethod
     def from_xml(cls, element: Element) -> PyPIFeedItem:
-        published_raw = element.findtext("guid", "")
+        published_raw = element.findtext("pubDate", "")
 
         return cls(
             title=element.findtext("title", ""),

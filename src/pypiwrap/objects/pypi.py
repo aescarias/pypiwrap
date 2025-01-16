@@ -218,8 +218,9 @@ class ReleaseFile(APIObject):
     Package types are grouped into 'sdist' for source distributions and 'bdist_*' for
     built distributions.
     
-    As of PEP 527, PyPI only accepts 'sdist', 'bdist_wheel', and 'bdist_egg'. Other bdist 
-    variants may still be returned for older packages but they are considered legacy.
+    As of PEP 527 and PEP 715, PyPI only accepts 'sdist' and 'bdist_wheel'. Other bdist 
+    variants may still be returned for older packages but they are considered legacy 
+    and can no longer be uploaded to PyPI.
     """
 
     python_version: str
