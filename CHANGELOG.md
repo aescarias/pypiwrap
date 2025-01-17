@@ -1,110 +1,122 @@
+<!-- markdownlint-configure-file { "MD024": { "siblings_only": true } } -->
 # Changelog
 
-A complete changelog for the `pypiwrap` project.
+(versions follow [Semantic Versioning v2.0.0](https://semver.org/spec/v2.0.0.html))
 
-## 1.1.0 (4-11-2023)
+## [1.1.0] (2023-11-04)
 
 This release adds a few small changes to the API and cleans up the documentation of the project.
 
-Client:
+### Additions
 
-- Clients now support a new `host` parameter so a user can provide a different host than the default.
-- Added a new `PYPI_HOST` constant.
-  - With this change, the `JSON_URL`, `STATS_URL`, and `SIMPLE_URL` constants have been marked for potential deprecation and are no longer used within the package.
+- Clients now support a `host` parameter allowing users to provide an alternative host compatible with the APIs.
+- Created a new `PYPI_HOST` constant.
+- Added `DistributionFile.core_metadata` (PEP 714).
 
-Objects:
+### Deprecations
 
-- Deprecated `Project.bugtrack_url` and `ReleaseFile.has_sig`
-- Added `DistributionFile.core_metadata` (PEP 714)
-- Addressed datetime conversion error for `upload_time` values not containing an microsecond component.
+- `JSON_URL`, `STATS_URL`, and `SIMPLE_URL`: These constants are no longer used by pypiwrap.
+- `Project.bugtrack_url`: This is no longer reported by the API and always returns None. Users may consult for bugtracking URLs in `Project.project_urls`.
+- `ReleaseFile.has_sig`: This is no longer reported by the API and always returns None. Users should simply add `.asc` at the end of `ReleaseFile.url` and perform a GET request.
 
-## 1.0.0 (19-5-2023)
+### Fixes
+
+- Addressed datetime conversion error for `upload_time` values not containing a microsecond component.
+
+## [1.0.0] (2023-05-19)
 
 This is the first major release :tada:. It adds some notable changes to the structure of the project.
 
-Client:
+### Additions
 
-- `Client`'s functionality has been split into two new classes:
-  - `PyPIClient`: The JSON and Stats API
-    - `Client.get_project` -> `PyPIClient.get_project`
-    - `Client.get_stats` -> `PyPIClient.get_stats`
-  - `SimpleClient`: The Simple API
-    - `Client.get_all_projects` -> `SimpleClient.get_index`
-    - `Client.get_files` -> `SimpleClient.get_page`
-- Clients can now be used as context managers (`with`)
-- Clients now report an user agent
+- Added `PyPIClient` (for the JSON and Stats API) and `SimpleClient` (for the Simple API) as replacements for `Client`.
+  - `Client.get_project` -> `PyPIClient.get_project`
+  - `Client.get_stats` -> `PyPIClient.get_stats`
+  - `Client.get_all_projects` -> `SimpleClient.get_index`
+  - `Client.get_files` -> `SimpleClient.get_page`
+- Clients can now be used as context managers (`with` statement).
+- Clients now report an appropriate user agent.
+- Added `exceptions.raise_for_status` as a replacement for `exceptions.error_from_response`.
+- Added `Vulnerability.withdrawn` attribute.
+- Added `DistributionFile.size` and `DistributionFile.upload_time` (PEP 700).
+- Added `ProjectPage` (PEP 700).
+- Added some documentation to the utilities.
 
-Objects:
-
-Objects have also been split into two modules:  `pypi` and `simple`. The base class has also been moved to a separate `base` module.
+### Changes
 
 - Renamed `Base` to `APIObject`
-- Added `Vulnerability.withdrawn`
-- `Stats.top_packages` is now sorted by size
-- Added `DistributionFile.size` and `DistributionFile.upload_time` (PEP 700)
-- Added `ProjectPage` (PEP 700)
+- Renamed `Size.from_bytes` to `Size.from_int` to avoid confusion with the builtin `bytes`.
+- `Stats.top_packages` is now sorted by size.
 
-Other Changes:
+### Removals
 
-- Added some documentation to the utilities
-- `exceptions.error_from_response` was rewritten into `exceptions.raise_for_status`
-- Renamed `Size.from_bytes` to `Size.from_int` (to avoid confusion with the builtin)
+- `Client`: Its functionality has been split into `PyPIClient` and `SimpleClient`.
+- `exceptions.error_from_response`: Now replaced by `exceptions.raise_for_status`.
 
-## 0.3.0 (1-11-2022)
+## [0.3.0] (2022-11-01)
 
-This release focuses on fixes and improvements to the pypiwrap package. It can be considered stable.
+This release focuses on fixes and improvements to the pypiwrap package. This release can be considered stable.
 
-To better align with the API's structure/terminology:
+### Additions
 
-- Renamed `PyPiClient` to `Client`
-- Renamed `Package` to `Project`
-- Renamed `ReleaseURL` to `ReleaseFile`
-- Renamed `PackageFile` to `DistributionFile`
-- Renamed `Client.get_package` to `Client.get_project`
-- Renamed `ReleaseFile.packagetype` to `ReleaseFile.package_type`
-- Renamed `DistributionFile.gpg_sig` to `DistributionFile.has_sig` (to better align with `ReleaseFile.has_sig`)
-- Removed `ReleaseFile.md5_digest` (if needed, fetch from `ReleaseFile.digests` instead)
+- Added representation (`__repr__`) to `Stats`.
+- Added `utils.gpg_from_url`.
 
-Bug Fixes:
+### Changes
 
-- Fixed incorrect type hint of `Project.requires_dist`
-- Fixed incorrect SI step size for `utils.bytes_to_readable`
-  - Older versions used 1024 rather than the correct one (1000) as the step size for SI
+- The following have been renamed to better align with the API's structure and terminology:
+  - `PyPiClient` -> `Client`.
+  - `Package` -> `Project`.
+  - `ReleaseURL` -> `ReleaseFile`.
+  - `PackageFile` -> `DistributionFile`.
+  - `Client.get_package` -> `Client.get_project`.
+  - `ReleaseFile.packagetype` -> `ReleaseFile.package_type`.
+  - `DistributionFile.gpg_sig` -> `DistributionFile.has_sig` (to better align with `ReleaseFile.has_sig`).
+- Updated docs for `ReleaseFile.python_version` to be clearer (along with other members).
+- Migrated exceptions to a separate module (`exceptions`).
 
-Other changes:
+### Removals
 
-- Migrated exceptions to a separate module (`exceptions`)
-- Added representation (`__repr__`) to `Stats`
-- Added `utils.gpg_from_url`
-- Updated docs for `ReleaseFile.python_version` to be clearer (along with other members)
-- Fixed typos in documentation
+- `ReleaseFile.md5_digest`: If needed, fetch from `ReleaseFile.digests` instead.
 
-## 0.2.0 (11-9-2022)
+### Fixes
 
-This is a complete rewrite of the original project designed with a more Pythonic approach and a simpler API.
+- Fixed incorrect type hint of `Project.requires_dist`.
+- Fixed incorrect SI step size for `utils.bytes_to_readable`. Older versions used 1024 rather than the correct one (1000) as the step size for SI
+- Fixed typos in documentation.
 
-Client:
+## [0.2.0] (2022-09-11)
 
-- Removed `MainAPI` in favor of `PyPiClient`
-- Removed `PackageInfo` and `ReleaseInfo`. Their functionalities have been merged into `PyPiClient`. (`Client.get_package`)
-- Added `Client.get_stats`. This also removes the `Statistics` and `TopPackage` models, in favor of a single `Stats` model.
+This is a complete rewrite of the original project, designed with a more Pythonic approach and a simpler API.
+
+### Additions
+
+- Added `PyPiClient` as a replacement for the other API classes.
+- Added the data classes `Base`, `Package`, `ReleaseURL`, `Vulnerability`, and `PackageFile`.
+- Added the `NotFound` exception as a replacement for `PackageNotFound` and `VersionNotFound`.
+- Added the `ClientError` exception.
+- Added `utils.Size` for representing human-readable sizes.
+- Added `utils.iso_to_datetime` for converting ISO 8601 strings to date times.
+- Added `utils.remove_additional` for discarding unneeded fields.
 - Added `Client.get_all_projects` and `Client.get_files` from the Simple API.
 
-Objects:
+### Changes
 
-- Added data classes `Base`, `Package`, `ReleaseURL`, `Vulnerability`, and `PackageFile`.
+- Switched to `setup.cfg` for package information.
 
-Utils:
+### Removals
 
-- Added `Size` to represent human-readable sizes.
-- Added `iso_to_datetime` and `remove_additional`.
+- Removed `MainAPI`. Users should use `PyPiClient` instead.
+- Removed `PackageInfo` and `ReleaseInfo`. They have been merged into `PyPiClient` as `PyPiClient.get_package`.
+- Removed `Statistics` and `TopPackage` in favor of a single `Stats` model.
+- Removed `PackageNotFound` and `VersionNotFound` in favor of the new `NotFound` exception.
 
-Other Changes:
-
-- Moved package information from `setup.py` to `setup.cfg`
-- Merged `PackageNotFound` and `VersionNotFound` into a single exception `NotFound`.
-- Added a general exception: `ClientError`.
-
-## 0.1.0 (13-3-2021)
+## [0.1.0] (2021-03-13)
 
 This is the first release of `pypiwrap`. :tada:
+
+[1.1.0]: https://github.com/aescarias/pypiwrap/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/aescarias/pypiwrap/compare/0.3.0...v1.0.0
+[0.3.0]: https://github.com/aescarias/pypiwrap/compare/0.2.0...0.3.0
+[0.2.0]: https://github.com/aescarias/pypiwrap/compare/0.1.0...0.2.0
+[0.1.0]: https://github.com/aescarias/pypiwrap/releases/tag/0.1.0

@@ -36,6 +36,7 @@ def iso_to_datetime(iso: str) -> datetime:
     try:
         return datetime.strptime(iso, "%Y-%m-%dT%H:%M:%S.%f%z")
     except ValueError:
+        # some datetimes do not include a microsecond component
         return datetime.strptime(iso, "%Y-%m-%dT%H:%M:%S%z")
 
 
@@ -47,8 +48,8 @@ def bytes_to_readable(number: float, unit: Literal["si", "iec"] = "si") -> str:
             A value in bytes.
 
         unit (:class:`str`, optional):
-            Units to use when representing the result. May be ``si`` for decimal (MB) units
-            which is the default or ``iec`` for binary (MiB) units.
+            Units to use when representing the result. May be ``si`` for decimal units (MB)
+            which is the default or ``iec`` for binary units (MiB).
     """
     if unit == "iec":
         suffixes = IEC_SUFFIXES
@@ -68,12 +69,9 @@ def bytes_to_readable(number: float, unit: Literal["si", "iec"] = "si") -> str:
 
 
 def remove_additional(cls: type[Any], data: dict[str, Any]) -> dict[str, Any]:
-    """Takes any dataclass ``cls`` and a dictionary ``data`` that can unpack to
-    it and discards any additional keys not part of the dataclass.
-
-    Returns:
-        A ``dict`` that can safely unpack to the dataclass.
-    """
+    """Takes any dataclass ``cls`` and a dictionary ``data`` that can unpack to it,
+    discards any keys in ``data`` that are not fields of the dataclass, and returns
+    a dictionary that can safely unpack to the dataclass."""
 
     result = data.copy()
     names = [field.name for field in dataclasses.fields(cls)]
