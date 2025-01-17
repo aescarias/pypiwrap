@@ -43,6 +43,18 @@ class NotFound(ClientError):
     pass
 
 
+class UnsupportedVersionError(Exception):
+    """Raised when a response specifies a major version greater than the one expected."""
+
+    pass
+
+
+class UnexpectedVersionWarning(UserWarning):
+    """Emitted when a response specifies a minor version greater than the one expected."""
+
+    pass
+
+
 class ParseError(Exception):
     """Raised when an error occurs while parsing a request."""
 

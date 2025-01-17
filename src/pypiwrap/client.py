@@ -1,16 +1,18 @@
 from __future__ import annotations
 
+import warnings
 from xml.etree import ElementTree
 
 import requests
 
-from ._version import __version__
-from .exceptions import ParseError, raise_for_status
+from .consts import PYPI_HOST, SIMPLE_CONTENT_TYPE, SUPPORTED_SIMPLE_VERSION, USER_AGENT
+from .exceptions import (
+    ParseError,
+    UnexpectedVersionWarning,
+    UnsupportedVersionError,
+    raise_for_status,
+)
 from .objects import IndexPage, Project, ProjectPage, PyPIFeed, Stats
-
-PYPI_HOST = "https://pypi.org"
-SIMPLE_CONTENT_TYPE = "application/vnd.pypi.simple.v1+json"
-USER_AGENT = f"aescarias/pypiwrap {__version__}"
 
 
 class PyPIFeedClient:
@@ -101,7 +103,14 @@ class PyPIClient:
 
 
 class SimpleRepoClient:
-    """Client for the PyPI Simple Repository API."""
+    """Client for the PyPI Simple Repository API (version 1).
+
+    The methods included will emit a :class:`~exceptions.UnexpectedVersionWarning`
+    warning if it receives a response with a minor version greater than what's supported.
+
+    As per PEP 629, the client will throw a :exc:`~exceptions.UnsupportedVersionError`
+    exception if it receives a response with a major version greater than what's supported.
+    """
 
     def __init__(self, host: str = PYPI_HOST) -> None:
         self.host = host
@@ -115,13 +124,33 @@ class SimpleRepoClient:
     def __exit__(self, *exc_args) -> None:
         self.rest.close()
 
+    def _verify_api_version(self, version: str) -> None:
+        declared_major, declared_minor = [int(comp) for comp in version.split(".")]
+        expected_major, expected_minor = SUPPORTED_SIMPLE_VERSION
+
+        if declared_major > expected_major:
+            raise UnsupportedVersionError(
+                f"API response returned version {declared_major}.{declared_minor}, "
+                f"expected major version {expected_major} or lower."
+            )
+        elif declared_major == expected_major and declared_minor > expected_minor:
+            warnings.warn(
+                f"API response returned version {declared_major}.{declared_minor}, "
+                f"this version is not strictly supported (support up to version "
+                f"{expected_major}.{expected_minor}).",
+                UnexpectedVersionWarning,
+            )
+
     def get_index_page(self) -> IndexPage:
         """Gets the index page for this repository."""
 
         response = self.rest.get(f"{self.host}/simple")
         raise_for_status(response)
 
-        return IndexPage.from_json(response.json())
+        page = response.json()
+
+        self._verify_api_version(page["meta"]["api-version"])
+        return IndexPage.from_json(page)
 
     def get_project_page(self, project: str) -> ProjectPage:
         """Gets the page for a given ``project``."""
@@ -129,4 +158,7 @@ class SimpleRepoClient:
         response = self.rest.get(f"{self.host}/simple/{project}")
         raise_for_status(response)
 
-        return ProjectPage.from_json(response.json())
+        page = response.json()
+
+        self._verify_api_version(page["meta"]["api-version"])
+        return ProjectPage.from_json(page)

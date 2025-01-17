@@ -5,7 +5,7 @@
 
 import re
 
-from pypiwrap._version import __version__
+from pypiwrap.consts import __version__
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information

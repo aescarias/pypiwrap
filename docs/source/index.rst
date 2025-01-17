@@ -96,6 +96,7 @@ Table of Contents
 
    Github <https://github.com/aescarias/pypiwrap>
    PyPI <https://pypi.org/project/pypiwrap>
+   Changelog <https://github.com/aescarias/pypiwrap/blob/main/CHANGELOG.md>
 
 Indices
 -------
