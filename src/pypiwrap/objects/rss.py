@@ -4,8 +4,6 @@ from dataclasses import dataclass
 from datetime import datetime
 from xml.etree.ElementTree import Element
 
-from ..utils import iso_to_datetime
-
 
 @dataclass
 class PyPIFeed:
@@ -55,8 +53,11 @@ class PyPIFeedItem:
     In PyPI's case, this is usually the same as :attr:`PyPIFeedItem.link`.
     """
 
-    published: datetime | None
-    """If provided, the datetime this resource was published."""
+    published_raw: str
+    """If provided, a string representing the datetime this resource was published.
+    
+    This datetime string usually follows RFC 822.
+    """
 
     description: str
     """A description or summary of this item."""
@@ -66,13 +67,18 @@ class PyPIFeedItem:
 
     @classmethod
     def from_xml(cls, element: Element) -> PyPIFeedItem:
-        published_raw = element.findtext("pubDate", "")
-
         return cls(
             title=element.findtext("title", ""),
             link=element.findtext("link", ""),
             guid=element.findtext("guid", ""),
-            published=iso_to_datetime(published_raw) if published_raw else None,
+            published_raw=element.findtext("pubDate", ""),
             description=element.findtext("description", ""),
             author=element.findtext("author", ""),
         )
+
+    @property
+    def published(self) -> datetime | None:
+        """If provided, the datetime this resource was published."""
+
+        if self.published_raw:
+            return datetime.strptime(self.published_raw, "%a, %d %b %Y %H:%M:%S %Z")

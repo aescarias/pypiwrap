@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>PyPI newest packages</title>
+        <link>https://pypi.org/</link>
+        <description>Newest packages registered at the Python Package Index</description>
+        <language>en</language>
+        <item>
+            <title>david-cointegration-package added to PyPI</title>
+            <link>https://pypi.org/project/david-cointegration-package/</link>
+            <guid>https://pypi.org/project/david-cointegration-package/</guid>
+            <description>A package for 203 python class</description>
+            <pubDate>Fri, 17 Jan 2025 21:57:58 GMT</pubDate>
+        </item>
+        <item>
+            <title>anndict added to PyPI</title>
+            <link>https://pypi.org/project/anndict/</link>
+            <guid>https://pypi.org/project/anndict/</guid>
+            <description>Conveniently process a dictionary of anndatas (adata_dict)</description>
+            <pubDate>Fri, 17 Jan 2025 21:52:42 GMT</pubDate>
+        </item>
+        <item>
+            <title>ScaleRPy added to PyPI</title>
+            <link>https://pypi.org/project/scalerpy/</link>
+            <guid>https://pypi.org/project/scalerpy/</guid>
+            <description>Obtain fits to scaling relations using the ridge line method</description>
+            <author>br.mcdonough@northeastern.edu</author>
+            <pubDate>Fri, 17 Jan 2025 21:48:37 GMT</pubDate>
+        </item>
+        <item>
+            <title>quel-qal added to PyPI</title>
+            <link>https://pypi.org/project/quel-qal/</link>
+            <guid>https://pypi.org/project/quel-qal/</guid>
+            <description>A Python library for analyzing Quel Imaging fluorescent phantoms and
+                imaging targets.</description>
+            <pubDate>Fri, 17 Jan 2025 21:24:35 GMT</pubDate>
+        </item>
+        <item>
+            <title>pulumi-kafkaconnect added to PyPI</title>
+            <link>https://pypi.org/project/pulumi-kafkaconnect/</link>
+            <guid>https://pypi.org/project/pulumi-kafkaconnect/</guid>
+            <description>A Pulumi native provider for Kafka Connect</description>
+            <pubDate>Fri, 17 Jan 2025 21:21:29 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

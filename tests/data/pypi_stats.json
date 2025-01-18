@@ -1,0 +1,29 @@
+{
+    "top_packages": {
+        "CodeIntel": {
+            "size": 23767329521
+        },
+        "OpenVisus": {
+            "size": 169221948962
+        },
+        "Panda3D": {
+            "size": 37568834701
+        },
+        "PySide2": {
+            "size": 20246295405
+        },
+        "apache-flink": {
+            "size": 20983641605
+        },
+        "aws-cdk-lib": {
+            "size": 24485148991
+        },
+        "awscrt": {
+            "size": 28480201985
+        },
+        "azureml-dataprep-rslex": {
+            "size": 25044310444
+        }
+    },
+    "total_packages_size": 24847924802983
+}

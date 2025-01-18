@@ -13,18 +13,11 @@ class Project(APIObject):
     """A PyPI project. This includes information about the project, its releases,
     and vulnerabilities."""
 
-    author: str
+    author: str | None
     """The author of this project."""
 
-    author_email: str
+    author_email: str | None
     """The email or contact details of the project's author."""
-
-    dynamic: list[str]
-    """A list of distribution metadata values marked as Dynamic.
-    
-    Dynamic values are values that are expected to be "filled in later" by build backends.
-    See https://peps.python.org/pep-0643/ for details.
-    """
 
     classifiers: list[str]
     """A list of PyPI classifiers for this project.
@@ -43,16 +36,17 @@ class Project(APIObject):
     plain text if the content type is invalid.
     """
 
-    docs_url: str | None
-    """The documentation URL for the project if available."""
-
-    home_page: str
-    """The project's home page."""
+    dynamic: list[str]
+    """A list of distribution metadata values marked as Dynamic.
+    
+    Dynamic values are values that are expected to be "filled in later" by build backends.
+    See https://peps.python.org/pep-0643/ for details.
+    """
 
     keywords: str | None
     """Keywords relating to this project."""
 
-    license: str
+    license: str | None
     """Text indicating the license for this project."""
 
     license_expression: str | None
@@ -70,30 +64,20 @@ class Project(APIObject):
     name: str
     """The name of the project."""
 
-    package_url: str
-    """The PyPI package URL.
-     
-    The :attr:`.project_url` attribute should be preferred. Please see docs for details."""
-
     platform: str | None
     """The release's platform target if any specified.
     
-    Usually, this is only set for platforms not included in the PyPI classifiers."""
+    Usually, this is only set for platforms not included in the PyPI classifiers.
+    """
 
     project_urls: dict[str, str]
     """A mapping of labels to URLs relating to the project."""
 
     project_url: str
-    """The PyPI project's URL.
-    
-    :attr:`.package_url` and :attr:`.project_url` are effectively the same value. Users
-    should prefer this attribute.
-
-    See https://github.com/pypi/warehouse/issues/3206 for details.
-    """
+    """The PyPI URL for this project."""
 
     release_url: str
-    """The project URL relating to this specific release."""
+    """The PyPI URL relating to this specific release."""
 
     requires_dist: list[str]
     """A list of required distributions or dependencies specified according to PEP 508."""
@@ -153,7 +137,7 @@ class Project(APIObject):
             self.name,
             summary=self.summary,
             version=self.version,
-            package_url=self.package_url,
+            project_url=self.project_url,
         )
 
 

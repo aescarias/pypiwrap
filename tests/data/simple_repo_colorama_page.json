@@ -1,0 +1,309 @@
+{
+    "alternate-locations": [],
+    "files": [
+        {
+            "core-metadata": {
+                "sha256": "abd129356bb5c6017d5d20d9d66ea24aa755f0e8502b63b2f6bea2c5d8c3285e"
+            },
+            "data-dist-info-metadata": {
+                "sha256": "abd129356bb5c6017d5d20d9d66ea24aa755f0e8502b63b2f6bea2c5d8c3285e"
+            },
+            "filename": "colorama-0.4.0-py2.py3-none-any.whl",
+            "hashes": {
+                "sha256": "a3d89af5db9e9806a779a50296b5fdb466e281147c2c235e8225ecc6dbf7bbf3"
+            },
+            "provenance": null,
+            "requires-python": null,
+            "size": 21204,
+            "upload-time": "2018-10-10T14:47:29.452827Z",
+            "url": "https://files.pythonhosted.org/packages/0a/93/6e8289231675d561d476d656c2ee3a868c1cca207e16c118d4503b25e2bf/colorama-0.4.0-py2.py3-none-any.whl",
+            "yanked": false
+        },
+        {
+            "core-metadata": false,
+            "data-dist-info-metadata": false,
+            "filename": "colorama-0.4.0.zip",
+            "hashes": {
+                "sha256": "c9b54bebe91a6a803e0772c8561d53f2926bfeb17cd141fbabcb08424086595c"
+            },
+            "provenance": null,
+            "requires-python": null,
+            "size": 37521,
+            "upload-time": "2018-10-10T14:47:13.190695Z",
+            "url": "https://files.pythonhosted.org/packages/55/d5/c35bd3e63757ac767105f8695b055581d8b8dd8c22fef020ebefa2a3725d/colorama-0.4.0.zip",
+            "yanked": false
+        },
+        {
+            "core-metadata": {
+                "sha256": "a88c34f9a63a9be2663da5c305c848d4676514cd6ca186978171982f1c05587f"
+            },
+            "data-dist-info-metadata": {
+                "sha256": "a88c34f9a63a9be2663da5c305c848d4676514cd6ca186978171982f1c05587f"
+            },
+            "filename": "colorama-0.4.1-py2.py3-none-any.whl",
+            "hashes": {
+                "sha256": "f8ac84de7840f5b9c4e3347b3c1eaa50f7e49c2b07596221daec5edaabbd7c48"
+            },
+            "provenance": null,
+            "requires-python": null,
+            "size": 15471,
+            "upload-time": "2018-11-25T12:14:13.515578Z",
+            "url": "https://files.pythonhosted.org/packages/4f/a6/728666f39bfff1719fc94c481890b2106837da9318031f71a8424b662e12/colorama-0.4.1-py2.py3-none-any.whl",
+            "yanked": false
+        },
+        {
+            "core-metadata": false,
+            "data-dist-info-metadata": false,
+            "filename": "colorama-0.4.1.tar.gz",
+            "hashes": {
+                "sha256": "05eed71e2e327246ad6b38c540c4a3117230b19679b875190486ddd2d721422d"
+            },
+            "provenance": null,
+            "requires-python": null,
+            "size": 24104,
+            "upload-time": "2018-11-25T12:14:09.261731Z",
+            "url": "https://files.pythonhosted.org/packages/76/53/e785891dce0e2f2b9f4b4ff5bc6062a53332ed28833c7afede841f46a5db/colorama-0.4.1.tar.gz",
+            "yanked": false
+        },
+        {
+            "core-metadata": {
+                "sha256": "68c40c8428c7fbe9f1236cb67c30382a472a71b851601b3bab95d905ef6fc4fb"
+            },
+            "data-dist-info-metadata": {
+                "sha256": "68c40c8428c7fbe9f1236cb67c30382a472a71b851601b3bab95d905ef6fc4fb"
+            },
+            "filename": "colorama-0.4.2-py2.py3-none-any.whl",
+            "hashes": {
+                "sha256": "1949017b72f8b9c4060f4c12bc35ff47850617e37d2440b574bff362cd8f5174"
+            },
+            "provenance": null,
+            "requires-python": null,
+            "size": 15927,
+            "upload-time": "2019-12-06T20:43:41.280178Z",
+            "url": "https://files.pythonhosted.org/packages/31/cb/88c908c1be067fb6bacd3d7488ccab1a212533767b951933aac3d22648e2/colorama-0.4.2-py2.py3-none-any.whl",
+            "yanked": "Bad build, missing files, will not install"
+        },
+        {
+            "core-metadata": false,
+            "data-dist-info-metadata": false,
+            "filename": "colorama-0.4.2.tar.gz",
+            "hashes": {
+                "sha256": "3e0d36a97e86c019317b4896075b38a72438df68abdde0518a6ca12c88448a4b"
+            },
+            "provenance": null,
+            "requires-python": null,
+            "size": 19742,
+            "upload-time": "2019-12-06T20:14:37.698712Z",
+            "url": "https://files.pythonhosted.org/packages/cb/fe/bfc4d807aa43a183ab387340f524a0bb086624f2c5935bd08e647b54b269/colorama-0.4.2.tar.gz",
+            "yanked": "Bad build, missing files, will not install"
+        },
+        {
+            "core-metadata": {
+                "sha256": "fa8bea50b1df047b3da55d9efd46bcfb0d954952e7a3eeb1dfa497493b16bd27"
+            },
+            "data-dist-info-metadata": {
+                "sha256": "fa8bea50b1df047b3da55d9efd46bcfb0d954952e7a3eeb1dfa497493b16bd27"
+            },
+            "filename": "colorama-0.4.3-py2.py3-none-any.whl",
+            "hashes": {
+                "sha256": "7d73d2a99753107a36ac6b455ee49046802e59d9d076ef8e47b61499fa29afff"
+            },
+            "provenance": null,
+            "requires-python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+            "size": 15931,
+            "upload-time": "2019-12-06T20:46:31.424381Z",
+            "url": "https://files.pythonhosted.org/packages/c9/dc/45cdef1b4d119eb96316b3117e6d5708a08029992b2fee2c143c7a0a5cc5/colorama-0.4.3-py2.py3-none-any.whl",
+            "yanked": false
+        },
+        {
+            "core-metadata": false,
+            "data-dist-info-metadata": false,
+            "filename": "colorama-0.4.3.tar.gz",
+            "hashes": {
+                "sha256": "e96da0d330793e2cb9485e9ddfd918d456036c7149416295932478192f4436a1"
+            },
+            "provenance": null,
+            "requires-python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+            "size": 27328,
+            "upload-time": "2019-12-06T20:46:32.948250Z",
+            "url": "https://files.pythonhosted.org/packages/82/75/f2a4c0c94c85e2693c229142eb448840fba0f9230111faa889d1f541d12d/colorama-0.4.3.tar.gz",
+            "yanked": false
+        },
+        {
+            "core-metadata": {
+                "sha256": "26653b78fa44875c5ca9957424a72bae553b729e68e089c39472576e8fc54d0c"
+            },
+            "data-dist-info-metadata": {
+                "sha256": "26653b78fa44875c5ca9957424a72bae553b729e68e089c39472576e8fc54d0c"
+            },
+            "filename": "colorama-0.4.4-py2.py3-none-any.whl",
+            "hashes": {
+                "sha256": "9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"
+            },
+            "provenance": null,
+            "requires-python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+            "size": 16028,
+            "upload-time": "2020-10-13T02:42:26.463288Z",
+            "url": "https://files.pythonhosted.org/packages/44/98/5b86278fbbf250d239ae0ecb724f8572af1c91f4a11edf4d36a206189440/colorama-0.4.4-py2.py3-none-any.whl",
+            "yanked": false
+        },
+        {
+            "core-metadata": false,
+            "data-dist-info-metadata": false,
+            "filename": "colorama-0.4.4.tar.gz",
+            "hashes": {
+                "sha256": "5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"
+            },
+            "provenance": null,
+            "requires-python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+            "size": 27813,
+            "upload-time": "2020-10-15T18:36:33.372380Z",
+            "url": "https://files.pythonhosted.org/packages/1f/bb/5d3246097ab77fa083a61bd8d3d527b7ae063c7d8e8671b1cf8c4ec10cbe/colorama-0.4.4.tar.gz",
+            "yanked": false
+        },
+        {
+            "core-metadata": {
+                "sha256": "7afada0ab0140f54c0bb80c2970a8cd1d30901bb365dab11fcf645159da6b4fc"
+            },
+            "data-dist-info-metadata": {
+                "sha256": "7afada0ab0140f54c0bb80c2970a8cd1d30901bb365dab11fcf645159da6b4fc"
+            },
+            "filename": "colorama-0.4.5rc1-py2.py3-none-any.whl",
+            "hashes": {
+                "sha256": "5db2995a1536da6577ddd34d22bd2ed9bf7c4f34803b8463884c2ca369b53aaa"
+            },
+            "provenance": null,
+            "requires-python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+            "size": 16241,
+            "upload-time": "2022-06-15T16:16:35.409864Z",
+            "url": "https://files.pythonhosted.org/packages/e0/09/46afccf3a5b2bff5e7c7c97d825ac6737e14c65879fcbba863e1140334b3/colorama-0.4.5rc1-py2.py3-none-any.whl",
+            "yanked": false
+        },
+        {
+            "core-metadata": false,
+            "data-dist-info-metadata": false,
+            "filename": "colorama-0.4.5rc1.tar.gz",
+            "hashes": {
+                "sha256": "19a3722f1c0435feda6db09486df81625a19393a171e5496dea08c876436daa5"
+            },
+            "provenance": null,
+            "requires-python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+            "size": 27405,
+            "upload-time": "2022-06-15T16:16:38.555038Z",
+            "url": "https://files.pythonhosted.org/packages/e1/3f/40d8e72c2660a1493a456769a64679eebc3611b0029ae62a6f609246b05f/colorama-0.4.5rc1.tar.gz",
+            "yanked": false
+        },
+        {
+            "core-metadata": {
+                "sha256": "29be8ca18cd606690f84509fd125bb6bee447b2b2c8feb3379f266c689101525"
+            },
+            "data-dist-info-metadata": {
+                "sha256": "29be8ca18cd606690f84509fd125bb6bee447b2b2c8feb3379f266c689101525"
+            },
+            "filename": "colorama-0.4.5-py2.py3-none-any.whl",
+            "hashes": {
+                "sha256": "854bf444933e37f5824ae7bfc1e98d5bce2ebe4160d46b5edf346a89358e99da"
+            },
+            "provenance": null,
+            "requires-python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+            "size": 16204,
+            "upload-time": "2022-06-16T12:34:45.998806Z",
+            "url": "https://files.pythonhosted.org/packages/77/8b/7550e87b2d308a1b711725dfaddc19c695f8c5fa413c640b2be01662f4e6/colorama-0.4.5-py2.py3-none-any.whl",
+            "yanked": false
+        },
+        {
+            "core-metadata": false,
+            "data-dist-info-metadata": false,
+            "filename": "colorama-0.4.5.tar.gz",
+            "hashes": {
+                "sha256": "e6c6b4334fc50988a639d9b98aa429a0b57da6e17b9a44f0451f930b6967b7a4"
+            },
+            "provenance": null,
+            "requires-python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+            "size": 27469,
+            "upload-time": "2022-06-16T12:34:47.780887Z",
+            "url": "https://files.pythonhosted.org/packages/2b/65/24d033a9325ce42ccbfa3ca2d0866c7e89cc68e5b9d92ecaba9feef631df/colorama-0.4.5.tar.gz",
+            "yanked": false
+        },
+        {
+            "core-metadata": {
+                "sha256": "cbd1ae4ad99d917a16d0b9496515b74863b376388a8bf9321e2037f60225d09e"
+            },
+            "data-dist-info-metadata": {
+                "sha256": "cbd1ae4ad99d917a16d0b9496515b74863b376388a8bf9321e2037f60225d09e"
+            },
+            "filename": "colorama-0.4.6rc1-py2.py3-none-any.whl",
+            "hashes": {
+                "sha256": "bc3a1efa0b297242dcd0757e2e83d358bcd18bda77735e493aa89a634e74c9bf"
+            },
+            "provenance": null,
+            "requires-python": "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7",
+            "size": 25364,
+            "upload-time": "2022-10-19T18:44:46.715453Z",
+            "url": "https://files.pythonhosted.org/packages/5e/78/955c5fa168bee1621aa3bed1cadd2bdd38ea53ac22cf81be9579eac49a95/colorama-0.4.6rc1-py2.py3-none-any.whl",
+            "yanked": false
+        },
+        {
+            "core-metadata": false,
+            "data-dist-info-metadata": false,
+            "filename": "colorama-0.4.6rc1.tar.gz",
+            "hashes": {
+                "sha256": "96e0137fb3ab6b56576b4638116d77c59f3e0565f4ea081172e4721c722afa92"
+            },
+            "provenance": null,
+            "requires-python": "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7",
+            "size": 27700,
+            "upload-time": "2022-10-19T18:44:50.618953Z",
+            "url": "https://files.pythonhosted.org/packages/a6/59/c7f46e87fef3864dd19fae732405d8516c91aa18109782ddf94d53cacecd/colorama-0.4.6rc1.tar.gz",
+            "yanked": false
+        },
+        {
+            "core-metadata": {
+                "sha256": "7baed29eb50c3b29bdb33ff84e3177bf1bc05784f7685ecdcaa4471c7dd810cc"
+            },
+            "data-dist-info-metadata": {
+                "sha256": "7baed29eb50c3b29bdb33ff84e3177bf1bc05784f7685ecdcaa4471c7dd810cc"
+            },
+            "filename": "colorama-0.4.6-py2.py3-none-any.whl",
+            "hashes": {
+                "sha256": "4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
+            },
+            "provenance": null,
+            "requires-python": "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7",
+            "size": 25335,
+            "upload-time": "2022-10-25T02:36:20.889702Z",
+            "url": "https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl",
+            "yanked": false
+        },
+        {
+            "core-metadata": false,
+            "data-dist-info-metadata": false,
+            "filename": "colorama-0.4.6.tar.gz",
+            "hashes": {
+                "sha256": "08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"
+            },
+            "provenance": null,
+            "requires-python": "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7",
+            "size": 27697,
+            "upload-time": "2022-10-25T02:36:22.414799Z",
+            "url": "https://files.pythonhosted.org/packages/d8/53/6f443c9a4a8358a93a6792e2acffb9d9d5cb0a5cfd8802644b7b1c9a02e4/colorama-0.4.6.tar.gz",
+            "yanked": false
+        }
+    ],
+    "meta": {
+        "_last-serial": 15517557,
+        "api-version": "1.3"
+    },
+    "name": "colorama",
+    "versions": [
+        "0.4.0",
+        "0.4.1",
+        "0.4.2",
+        "0.4.3",
+        "0.4.4",
+        "0.4.5rc1",
+        "0.4.5",
+        "0.4.6rc1",
+        "0.4.6"
+    ]
+}
