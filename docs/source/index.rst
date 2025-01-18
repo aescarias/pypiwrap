@@ -64,8 +64,21 @@ Example 2: Getting the latest distribution file for a project
    with pypiwrap.SimpleRepoClient() as repo:
        project = repo.get_project_page("requests")
       
-       print(project.files[-1].url)
+       print(project.files[-1].url)  # https://files.pythonhosted.org/packages/63/70/[...]
 
+Example 3: Fetching the latest releases feed for a package.
+
+.. code-block:: python
+
+   import pypiwrap
+
+   with pypiwrap.PyPIFeedClient() as rss:
+       feed = rss.get_latest_releases_for_project("Django")
+
+       for item in feed.items:
+           print(f"{item.title} was released on {item.published:%A, %B %d, %Y}")
+           print(item.link)
+           print()
 
 More documentation can be found in the :ref:`Client reference`.
 
