@@ -10,8 +10,11 @@ from .base import APIObject
 
 @dataclass
 class Project(APIObject):
-    """A PyPI project. This includes information about the project, its releases,
-    and vulnerabilities."""
+    """A PyPI project or release.
+
+    This includes information about the project, this particular release, URLs to
+    distribution files, and any reported vulnerabilities.
+    """
 
     author: str | None
     """The author of this project."""
@@ -41,19 +44,31 @@ class Project(APIObject):
     
     Dynamic values are values that are expected to be "filled in later" by build backends.
     See https://peps.python.org/pep-0643/ for details.
+    
+    .. versionadded:: 2.0.0
     """
 
     keywords: str | None
-    """Keywords relating to this project."""
+    """Keywords relating to this project.
+    
+    This value is usually a list of comma or space separated values. It is equivalent
+    to the 'Keywords' field in the Core metadata spec.
+    """
 
     license: str | None
     """Text indicating the license for this project."""
 
     license_expression: str | None
-    """If present, a valid SPDX license expression."""
+    """If present, a valid SPDX license expression.
+    
+    .. versionadded:: 2.0.0
+    """
 
     license_files: list[str]
-    """A list of licenses attached to the project, if any."""
+    """A list of license files attached to this project, if any.
+    
+    .. versionadded:: 2.0.0
+    """
 
     maintainer: str | None
     """The project's maintainer."""
@@ -65,13 +80,13 @@ class Project(APIObject):
     """The name of the project."""
 
     platform: str | None
-    """The release's platform target if any specified.
+    """The platform target of this release, if any.
     
     Usually, this is only set for platforms not included in the PyPI classifiers.
     """
 
     project_urls: dict[str, str]
-    """A mapping of labels to URLs relating to the project."""
+    """A mapping of labels to URLs relating to this project."""
 
     project_url: str
     """The PyPI URL for this project."""
@@ -86,23 +101,25 @@ class Project(APIObject):
     """The Python version required for this release."""
 
     provides_extra: list[str]
-    """A list of optional or extra features provided by the package.
+    """A list of optional or extra features provided by this package.
     
     See https://peps.python.org/pep-0566/ for details. Distribution extra names should be 
     valid Python identifiers as defined in https://peps.python.org/pep-0685/.
+    
+    .. versionadded:: 2.0.0
     """
 
     summary: str
-    """A short summary of the project."""
+    """A short summary of this project."""
 
     version: str
-    """The version of the project."""
+    """The version of this project."""
 
     yanked: bool
     """Whether this release was 'yanked' or removed from circulation."""
 
     yanked_reason: str | None
-    """The reason the release was yanked if applicable."""
+    """The reason this release was yanked if applicable."""
 
     file_urls: list[ReleaseFile]
     """A list of files for this release."""
@@ -143,7 +160,7 @@ class Project(APIObject):
 
 @dataclass
 class Vulnerability(APIObject):
-    """A vulnerability in a project or release."""
+    """A vulnerability in a PyPI project or release."""
 
     aliases: list[str]
     """The identifiers used to refer to this vulnerability."""
@@ -227,7 +244,7 @@ class ReleaseFile(APIObject):
     """The time this file was uploaded on."""
 
     upload_time_tz: datetime  # API: upload_time_iso_8601
-    """The time this file was uploaded on in UTC and compliant with ISO 8601."""
+    """The time this file was uploaded on in a format compliant with ISO 8601."""
 
     url: str
     """The URL for this release file."""

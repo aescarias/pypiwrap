@@ -6,7 +6,7 @@ from ..utils import remove_additional
 
 
 class APIObject:
-    """A base API object."""
+    """A base API object designed for JSON."""
 
     @classmethod
     def from_json(cls, data: dict[str, Any]) -> APIObject:

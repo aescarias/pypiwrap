@@ -16,7 +16,15 @@ from .objects import IndexPage, Project, ProjectPage, PyPIFeed, Stats
 
 
 class PyPIFeedClient:
-    """Client for the PyPI RSS feeds."""
+    """Client for the PyPI RSS feeds.
+
+    .. versionadded:: 2.0.0
+    .. warning:: This client is only designed for hosts under the pypi.org domain.
+
+    Arguments:
+        host (:class:`str`, optional):
+            The base URL of the PyPI feeds host. Defaults to https://pypi.org.
+    """
 
     def __init__(self, host=PYPI_HOST) -> None:
         self.host = host
@@ -56,7 +64,14 @@ class PyPIFeedClient:
 
 
 class PyPIClient:
-    """Client for the PyPI JSON and Stats API."""
+    """Client for the PyPI JSON and Stats API.
+
+    .. warning:: This client is only designed for hosts under the pypi.org domain.
+
+    Arguments:
+        host (:class:`str`, optional):
+            The base URL of the PyPI API host. Defaults to https://pypi.org.
+    """
 
     def __init__(self, host=PYPI_HOST) -> None:
         self.host = host
@@ -73,7 +88,8 @@ class PyPIClient:
         """Gets information about a project or any of its releases.
 
         Arguments:
-            name (:class:`str`): The name of the project
+            name (:class:`str`):
+                The name of the project
 
             version (:class:`str`, optional):
                 A version of the project to fetch. If none specified,
@@ -105,11 +121,15 @@ class PyPIClient:
 class SimpleRepoClient:
     """Client for the PyPI Simple Repository API (version 1).
 
-    The methods included will emit a :class:`~exceptions.UnexpectedVersionWarning`
+    The methods included will emit a :class:`~.exceptions.UnexpectedVersionWarning`
     warning if it receives a response with a minor version greater than what's supported.
 
-    As per PEP 629, the client will throw a :exc:`~exceptions.UnsupportedVersionError`
+    As per PEP 629, the client will throw a :class:`~.exceptions.UnsupportedVersionError`
     exception if it receives a response with a major version greater than what's supported.
+
+    Arguments:
+        host (:class:`str`, optional):
+            The base URL of the Simple Repository API host. Defaults to https://pypi.org.
     """
 
     def __init__(self, host: str = PYPI_HOST) -> None:
@@ -136,13 +156,18 @@ class SimpleRepoClient:
         elif declared_major == expected_major and declared_minor > expected_minor:
             warnings.warn(
                 f"API response returned version {declared_major}.{declared_minor}, "
-                f"this version is not strictly supported (support up to version "
+                f"this version is not strictly supported (latest supported: "
                 f"{expected_major}.{expected_minor}).",
                 UnexpectedVersionWarning,
             )
 
     def get_index_page(self) -> IndexPage:
-        """Gets the index page for this repository."""
+        """Gets the index page for this repository.
+
+        .. warning::
+            If you're using the PyPI host, the response returned by PyPI could
+            take several seconds to parse. Please use this method sparingly.
+        """
 
         response = self.rest.get(f"{self.host}/simple")
         raise_for_status(response)
@@ -153,7 +178,7 @@ class SimpleRepoClient:
         return IndexPage.from_json(page)
 
     def get_project_page(self, project: str) -> ProjectPage:
-        """Gets the page for a given ``project``."""
+        """Gets the project page for a given ``project``."""
 
         response = self.rest.get(f"{self.host}/simple/{project}")
         raise_for_status(response)

@@ -6,9 +6,9 @@
 pypiwrap
 ========
 
-pypiwrap is an API wrapper for the Python Package Index (PyPI), providing interfaces for the JSON API, the Stats API, and the Index API.
+pypiwrap is an API wrapper for the Python Package Index (PyPI), providing interfaces for the JSON API, the Stats API, the Index API, and the PyPI RSS feeds.
 
-For information on supported features, see :ref:`Features`.
+For more information on supported features, see :ref:`Features`.
 
 Installation
 ------------
@@ -36,16 +36,16 @@ pypiwrap requires Python 3.9 or higher.
 Quickstart
 ----------
 
-``pypiwrap`` provides three clients for interacting with PyPI:
+pypiwrap provides three clients for interacting with PyPI:
 
-* :class:`~pypiwrap.client.SimpleRepoClient` allows access to data from the PyPI Simple Repository API (also known as the Index API).
+* :class:`~pypiwrap.client.SimpleRepoClient` allows access to data from the Simple Repository API (also known as the Index API).
 * :class:`~pypiwrap.client.PyPIClient` allows access to data from the PyPI JSON API.
 * :class:`~pypiwrap.client.PyPIFeedClient` allows access to data from the PyPI RSS feeds.
 
 Examples
 --------
 
-Example 1: Fetching details about a project
+Example 1: Fetching details about a project.
 
 .. code-block:: python
 
@@ -55,7 +55,7 @@ Example 1: Fetching details about a project
        project = pypi.get_project("requests")
        print(f"{project.name} by {project.author}")  # requests by Kenneth Reitz
 
-Example 2: Getting the latest distribution file for a project
+Example 2: Getting the latest distribution file for a project.
 
 .. code-block:: python
 

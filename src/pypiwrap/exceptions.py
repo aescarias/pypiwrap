@@ -15,6 +15,7 @@ def raise_for_status(
         messages (:class:`dict[int, str]`, optional):
             An optional mapping of status codes to messages.
     """
+
     if response.ok:
         return
 
@@ -44,18 +45,27 @@ class NotFound(ClientError):
 
 
 class UnsupportedVersionError(Exception):
-    """Raised when a response specifies a major version greater than the one expected."""
+    """Raised when a response specifies a major version greater than the one supported.
+
+    .. versionadded:: 2.0.0
+    """
 
     pass
 
 
 class UnexpectedVersionWarning(UserWarning):
-    """Emitted when a response specifies a minor version greater than the one expected."""
+    """Emitted when a response specifies a minor version greater than the one expected.
+
+    .. versionadded:: 2.0.0
+    """
 
     pass
 
 
 class ParseError(Exception):
-    """Raised when an error occurs while parsing a request."""
+    """Raised when an error occurs while parsing a response.
+
+    .. versionadded:: 2.0.0
+    """
 
     pass

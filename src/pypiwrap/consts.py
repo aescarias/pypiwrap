@@ -1,8 +1,8 @@
 # Package metadata
 __name__ = "pypiwrap"
-__author__ = "Angel Carias"
+__author__ = "Ángel Carias"
 __license__ = "MIT"
-__version__ = "1.1.0"
+__version__ = "2.0.0"
 
 # PyPI constants
 PYPI_HOST = "https://pypi.org"

@@ -22,7 +22,7 @@ class PyPIFeed:
     """The language of this feed."""
 
     items: list[PyPIFeedItem]
-    """A list of items aggregated in this feed."""
+    """A list of items aggregated by this feed."""
 
     @classmethod
     def from_xml(cls, element: Element) -> PyPIFeed:

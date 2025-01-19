@@ -53,10 +53,16 @@ class DistributionFile(APIObject):
     """If available, a URL to the file's associated provenance.
     
     See https://peps.python.org/pep-0740/#provenance-objects for details.
+    
+    .. versionadded:: 2.0.0
     """
 
     has_gpg_sig: bool | None = None  # API: gpg_sig
-    """Whether a GPG signature for this file exists. If none, this value is unknown."""
+    """Whether a GPG signature for this file exists. If none, this value is unknown.
+    
+    For PyPI/Warehouse, this will always return None as GPG signatures are no longer
+    supported by the service.
+    """
 
     yanked: bool | str | None = None
     """
@@ -89,13 +95,22 @@ class DistributionFile(APIObject):
         if self.has_gpg_sig:
             return self.url + ".asc"
 
+    @property
+    def metadata_url(self) -> str | None:
+        """If available, a URL containing the metadata file."""
+        if self.core_metadata or self.dist_info_metadata:
+            return self.url + ".metadata"
+
     def __repr__(self) -> str:
         return self._build_repr_string(self.filename, size=self.size.si)
 
 
 @dataclass
 class Meta(APIObject):
-    """Information about a response from the Simple Repository API."""
+    """Information about a response from the Simple Repository API.
+
+    .. versionadded:: 2.0.0
+    """
 
     api_version: str
     """The API version being implemented. 
@@ -120,7 +135,10 @@ class Meta(APIObject):
 
 @dataclass
 class IndexPage(APIObject):
-    """The index page of the Simple Repository API."""
+    """The index page of the Simple Repository API.
+
+    .. versionadded:: 2.0.0
+    """
 
     meta: Meta
     """Information about the response."""
@@ -144,15 +162,20 @@ class ProjectPage(APIObject):
     """A project page from the Simple Repository API."""
 
     meta: Meta
-    """Information about the response."""
+    """Information about the response.
+
+    .. versionadded:: 2.0.0
+    """
 
     name: str
     """The name of this project."""
 
     alternate_locations: list[str]
-    """If a repository, a list of alternate locations or namespaces for this project. 
+    """A list of alternate locations or namespaces for this project. 
     
     See https://peps.python.org/pep-0708/#alternate-locations-metadata for details.
+    
+    .. versionadded:: 2.0.0
     """
 
     versions: list[str]

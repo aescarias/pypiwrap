@@ -20,6 +20,7 @@ release = __version__
 
 extensions = [
     "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
     "sphinx.ext.autosectionlabel",
     "sphinx_design",
     "sphinx_copybutton",

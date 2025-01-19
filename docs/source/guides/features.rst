@@ -35,7 +35,7 @@ PyPI/Warehouse APIs
       -
     * - `RSS feeds <https://docs.pypi.org/api/feeds/>`_
       - Yes
-      - See :class:`pypiwrap.client.PyPIFeedClient`
+      - See :class:`pypiwrap.client.PyPIFeedClient`.
     * - `Secret reporting API <https://docs.pypi.org/api/secrets/>`_
       - No
       - This API is designed for private use. There's currently no intention to implement it.
@@ -55,7 +55,7 @@ PEPs relating to PyPI
       - pypiwrap will always use the JSON API. See PEP 691.
     * - `PEP 629 - Versioning PyPI's Simple API <https://peps.python.org/pep-0629/>`_
       - Yes
-      - pypiwrap will verify the API Version as recommended by this PEP.
+      - pypiwrap will verify the API version as recommended by this PEP.
     * - `PEP 691 - JSON-based Simple API for Python Package Indexes <https://peps.python.org/pep-0691/>`_
       - Yes
       - See :class:`pypiwrap.client.SimpleRepoClient`.
