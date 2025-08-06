@@ -44,12 +44,12 @@ def bytes_to_readable(number: float, unit: Literal["si", "iec"] = "si") -> str:
     """Converts a number (in bytes) to a human-readable string representation.
 
     Arguments:
-        number (:class:`float`):
+        number (float):
             A value in bytes.
 
-        unit (:class:`str`, optional):
-            Units to use when representing the result. May be ``si`` for decimal units (MB)
-            which is the default or ``iec`` for binary units (MiB).
+        unit (str, optional):
+            Units to use when representing the result. May be "si" for decimal units (MB)
+            which is the default or "iec" for binary units (MiB).
     """
     if unit == "iec":
         suffixes = IEC_SUFFIXES

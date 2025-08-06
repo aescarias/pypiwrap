@@ -42,7 +42,7 @@ Commit messages should be descriptive and concise. Commit messages should also s
 For this project, you should use the following scopes:
 
 - `docs` for documentation, comments, and related resources.
-- `objects` for chnages to API objects (ex: `Project`).
+- `objects` for changes to API objects (ex: `Project`).
 - `clients` for changes to API clients (ex: `PyPIClient`).
 - `tests` for code coverage & unit testing.
 

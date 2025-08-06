@@ -71,3 +71,6 @@ PEPs relating to PyPI
     * - `PEP 740 - Index support for digital attestations <https://peps.python.org/pep-0740/>`_
       - Partially
       - This PEP introduces provenance objects and attestations. Only the ``provenance`` field returned by the Simple Repository API is recognized.
+    * - `PEP 792 - Project status markers in the simple index <https://peps.python.org/pep-0792/>`_
+      - No
+      -

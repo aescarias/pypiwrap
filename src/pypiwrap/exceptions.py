@@ -10,10 +10,11 @@ def raise_for_status(
     deemed OK, this will do nothing.
 
     Arguments:
-        response (:class:`requests.Response`): The response itself.
+        response (requests.Response):
+            The response itself.
 
-        messages (:class:`dict[int, str]`, optional):
-            An optional mapping of status codes to messages.
+        messages (dict[int, str], optional):
+            A mapping of status codes to messages.
     """
 
     if response.ok:

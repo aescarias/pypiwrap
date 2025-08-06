@@ -22,7 +22,7 @@ class PyPIFeedClient:
     .. warning:: This client is only designed for hosts under the pypi.org domain.
 
     Arguments:
-        host (:class:`str`, optional):
+        host (str, optional):
             The base URL of the PyPI feeds host. Defaults to https://pypi.org.
     """
 
@@ -69,7 +69,7 @@ class PyPIClient:
     .. warning:: This client is only designed for hosts under the pypi.org domain.
 
     Arguments:
-        host (:class:`str`, optional):
+        host (str, optional):
             The base URL of the PyPI API host. Defaults to https://pypi.org.
     """
 
@@ -88,10 +88,10 @@ class PyPIClient:
         """Gets information about a project or any of its releases.
 
         Arguments:
-            name (:class:`str`):
+            name (str):
                 The name of the project
 
-            version (:class:`str`, optional):
+            version (str):
                 A version of the project to fetch. If none specified,
                 the latest will be fetched.
         """
@@ -128,7 +128,7 @@ class SimpleRepoClient:
     exception if it receives a response with a major version greater than what's supported.
 
     Arguments:
-        host (:class:`str`, optional):
+        host (str, optional):
             The base URL of the Simple Repository API host. Defaults to https://pypi.org.
     """
 
