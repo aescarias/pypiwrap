@@ -37,17 +37,17 @@ For example:
 
 ### Commit Messages
 
-Commit messages should be descriptive and concise. Commit messages should also specify a scope including the modules or areas affected by the commit (for example: `fix(objects): address datetime conversion error in client`).
+Commit messages should be descriptive and concise. Commit messages should also specify a scope including the modules or areas affected by the commit (for example: `fix(pypi): address datetime conversion error in client`).
 
-For this project, you should use the following scopes:
+The project currently uses the following scopes:
 
-- `docs` for documentation, comments, and related resources.
-- `objects` for changes to API objects (ex: `Project`).
-- `clients` for changes to API clients (ex: `PyPIClient`).
-- `tests` for code coverage & unit testing.
+- `docs` for changes to documentation, comments, and related resources.
+- `simple` for changes to the Simple Repository API (ex: `SimpleRepoClient` and `ProjectPage`).
+- `pypi` for changes to the PyPI-specific API (ex: `PyPIClient` and `Project`).
+- `tests` for changes related to code coverage and unit testing.
 
 The commit types currently in use are:
 
 - `feat` for new features.
-- `fix` For bug fixes (if applicable, reference the issue the commit resolves).
+- `fix` for bug fixes (if applicable, reference the issue the commit resolves).
 - `chore` for anything else not covered in the other types.

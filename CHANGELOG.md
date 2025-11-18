@@ -7,7 +7,7 @@
 
 ### Additions
 
-- Support for PEP 792 project status markers.
+- Support for PEP 792 project status markers via `Meta.project_status` and `Meta.project_status_reason`.
 
 ## [2.0.0] (2025-01-18)
 
