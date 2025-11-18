@@ -8,7 +8,7 @@ __version__ = "2.0.0"
 PYPI_HOST = "https://pypi.org"
 USER_AGENT = f"aescarias/pypiwrap {__version__}"
 
-SUPPORTED_SIMPLE_VERSION = (1, 3)
+SUPPORTED_SIMPLE_VERSION = (1, 4)
 SIMPLE_CONTENT_TYPE = "application/vnd.pypi.simple.v1+json"
 
 INTEGRITY_CONTENT_TYPE = "application/vnd.pypi.integrity.v1+json"

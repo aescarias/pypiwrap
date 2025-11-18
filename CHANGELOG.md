@@ -3,6 +3,12 @@
 
 (versions follow [Semantic Versioning v2.0.0](https://semver.org/spec/v2.0.0.html))
 
+## [unreleased]
+
+### Additions
+
+- Support for PEP 792 project status markers.
+
 ## [2.0.0] (2025-01-18)
 
 pypiwrap 2.0 adds support for the PyPI RSS feeds and the current versions of the PyPI JSON API and the Simple Repository API.
@@ -156,6 +162,7 @@ This is a complete rewrite of the original project, designed with a more Pythoni
 
 This is the first release of `pypiwrap`. :tada:
 
+[unreleased]: https://github.com/aescarias/pypiwrap/compare/v2.0.0...main
 [2.0.0]: https://github.com/aescarias/pypiwrap/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/aescarias/pypiwrap/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/aescarias/pypiwrap/compare/0.3.0...v1.0.0

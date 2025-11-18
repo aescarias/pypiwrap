@@ -2,10 +2,32 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime
+from enum import Enum
 from typing import Any
 
 from ..utils import Size, iso_to_datetime, remove_additional
 from .base import APIObject
+
+
+class ProjectStatus(str, Enum):
+    """The project status marker as documented by PEP 792.
+
+    See https://peps.python.org/pep-0792/ for details.
+
+    .. versionadded:: 2.1.0
+    """
+
+    ACTIVE = "active"
+    """The project is active. This is the default status."""
+
+    ARCHIVED = "archived"
+    """The project does not expect to be updated in the future."""
+
+    QUARANTINED = "quarantined"
+    """The project is considered generally unsafe to use, e.g. due to malware."""
+
+    DEPRECATED = "deprecated"
+    """The project is considered obsolete, and may have been superseded by another project."""
 
 
 @dataclass
@@ -125,9 +147,29 @@ class Meta(APIObject):
     See https://peps.python.org/pep-0708/#repository-tracks-metadata for details.
     """
 
+    project_status: ProjectStatus = ProjectStatus.ACTIVE
+    """The project status marker as described in PEP 792. See :class:`.ProjectStatus`
+    for details on possible values. The default value is :attr:`.ProjectStatus.ACTIVE`.
+
+    .. versionadded:: 2.1.0
+    """
+
+    project_status_reason: str | None = None
+    """The reason or description of the project status marker, if any.
+    
+    .. versionadded:: 2.1.0
+    """
+
     @classmethod
     def from_json(cls, data: dict[str, Any]) -> Meta:
-        return Meta(api_version=data["api-version"], tracks=data.get("tracks", []))
+        return Meta(
+            api_version=data["api-version"],
+            tracks=data.get("tracks", []),
+            project_status=ProjectStatus(
+                data.get("project-status", ProjectStatus.ACTIVE)
+            ),
+            project_status_reason=data.get("project-status-reason"),
+        )
 
     def __repr__(self) -> str:
         return self._build_repr_string(api_version=self.api_version)
