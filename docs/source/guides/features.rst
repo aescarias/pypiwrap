@@ -72,5 +72,5 @@ PEPs relating to PyPI
       - Partially
       - This PEP introduces provenance objects and attestations. Only the ``provenance`` field returned by the Simple Repository API is recognized.
     * - `PEP 792 - Project status markers in the simple index <https://peps.python.org/pep-0792/>`_
-      - No
-      -
+      - Yes
+      - See :attr:`.Meta.project_status` and :attr:`.Meta.project_status_reason`.

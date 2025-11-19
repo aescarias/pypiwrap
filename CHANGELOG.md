@@ -8,6 +8,8 @@
 ### Additions
 
 - Support for PEP 792 project status markers via `Meta.project_status` and `Meta.project_status_reason`.
+- Support Python 3.13 and 3.14.
+- Bump expected Simple Repository API version to 1.4.
 
 ## [2.0.0] (2025-01-18)
 

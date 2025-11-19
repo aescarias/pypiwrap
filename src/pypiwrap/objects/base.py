@@ -6,17 +6,17 @@ from ..utils import remove_additional
 
 
 class APIObject:
-    """A base API object designed for JSON."""
+    """A base API object designed for JSON objects."""
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> APIObject:
+    def from_json(cls, data: dict[str, Any]):  # -> Self
         return cls(**remove_additional(cls, data.copy()))
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
     def _build_repr_string(self, *args, **kwargs) -> str:
-        arg_string = " ".join(map(repr, args))
+        arg_string = " ".join(repr(arg) for arg in args)
         kwarg_string = " ".join(f"{key}={value!r}" for key, value in kwargs.items())
         final_repr = (self.__class__.__name__, arg_string, kwarg_string)
 
