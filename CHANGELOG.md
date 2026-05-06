@@ -11,6 +11,10 @@
 - Support Python 3.13 and 3.14.
 - Bump expected Simple Repository API version to 1.4.
 
+### Changes
+
+- Drop support for Python 3.9.
+
 ## [2.0.0] (2025-01-18)
 
 pypiwrap 2.0 adds support for the PyPI RSS feeds and the current versions of the PyPI JSON API and the Simple Repository API.
