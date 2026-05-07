@@ -7,7 +7,7 @@
 
 ### Additions
 
-- Support for PEP 792 project status markers via `Meta.project_status` and `Meta.project_status_reason`.
+- Support for PEP 792 project status markers via `ProjectPage.status` and `ProjectPage.status_reason`.
 - Support for Python 3.13 and 3.14.
 - Support for ownership data returned by the PyPI JSON API via `Project.ownership` and `Ownership`.
 
@@ -16,7 +16,7 @@
 - Drop support for Python 3.9.
 - Bump expected Simple Repository API version to 1.4.
 
-## Deprecations
+### Deprecations
 
 - `ProjectPage.alternate_locations` and `Meta.tracks` have been deprecated as PEP 708 was rejected. They will be removed in pypiwrap 3.0.
 
