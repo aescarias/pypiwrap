@@ -11,7 +11,7 @@ from pypiwrap.consts import __version__
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "pypiwrap"
-copyright = "2023, Angel Carias"
+copyright = "2021-2026, Angel Carias"
 author = "Angel Carias"
 release = __version__
 

@@ -11,7 +11,7 @@ pypiwrap is an API wrapper for the Python Package Index (PyPI) providing interfa
 
 ## Installation
 
-pypiwrap requires Python 3.9 or later and can be installed with `pip`:
+pypiwrap requires Python 3.10 or later and can be installed with `pip`:
 
 - `python3 -m pip install pypiwrap` (Linux/Mac)
 - `py -3 -m pip install pypiwrap` (Windows)

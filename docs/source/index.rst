@@ -13,7 +13,7 @@ For more information on supported features, see :ref:`Features`.
 Installation
 ------------
 
-pypiwrap requires Python 3.9 or higher.
+pypiwrap requires Python 3.10 or greater.
 
 .. tab-set::
 
