@@ -147,28 +147,11 @@ class Meta(APIObject):
     See https://peps.python.org/pep-0708/#repository-tracks-metadata for details.
     """
 
-    project_status: ProjectStatus = ProjectStatus.ACTIVE
-    """The project status marker as described in PEP 792. See :class:`.ProjectStatus`
-    for details on possible values. The default value is :attr:`.ProjectStatus.ACTIVE`.
-
-    .. versionadded:: 2.1.0
-    """
-
-    project_status_reason: str | None = None
-    """The reason or description of the project status marker, if any.
-    
-    .. versionadded:: 2.1.0
-    """
-
     @classmethod
     def from_json(cls, data: dict[str, Any]) -> Meta:
         return Meta(
             api_version=data["api-version"],
             tracks=data.get("tracks", []),
-            project_status=ProjectStatus(
-                data.get("project-status", ProjectStatus.ACTIVE)
-            ),
-            project_status_reason=data.get("project-status-reason"),
         )
 
     def __repr__(self) -> str:
@@ -226,9 +209,26 @@ class ProjectPage(APIObject):
     files: list[DistributionFile]
     """A list of distribution files for this project."""
 
+    status: ProjectStatus = ProjectStatus.ACTIVE
+    """The project status marker as described in PEP 792. See :class:`.ProjectStatus`
+    for details on possible values. The default value is :attr:`.ProjectStatus.ACTIVE`.
+
+    .. versionadded:: 2.1.0
+    """
+
+    status_reason: str | None = None
+    """The reason or description of the project status marker, if any.
+    
+    .. versionadded:: 2.1.0
+    """
+
     @classmethod
     def from_json(cls, data: dict[str, Any]) -> ProjectPage:
         files = [DistributionFile.from_json(pkg_file) for pkg_file in data["files"]]
+
+        project_status = data.get("project-status", {})
+        status = project_status.get("status", ProjectStatus.ACTIVE)
+        status_reason = project_status.get("reason")
 
         return cls(
             meta=Meta.from_json(data["meta"]),
@@ -236,6 +236,8 @@ class ProjectPage(APIObject):
             alternate_locations=data.get("alternate-locations", []),
             versions=data["versions"],
             files=files,
+            status=ProjectStatus(status),
+            status_reason=status_reason,
         )
 
     def __repr__(self) -> str:
