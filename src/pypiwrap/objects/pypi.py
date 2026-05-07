@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any
 
@@ -130,23 +130,31 @@ class Project(APIObject):
     last_serial: int
     """The most recent serial ID number for this project."""
 
+    ownership: Ownership = field(default_factory=lambda: Ownership([]))
+    """Information about the project's roles and organization membership.
+    
+    .. versionadded:: 2.1.0
+    """
+
     @classmethod
     def from_json(cls, data: dict[str, Any]) -> Project:
         info = remove_additional(cls, data["info"].copy())
 
-        info["requires_dist"] = info.get("requires_dist") or []
-        info["provides_extra"] = info.get("provides_extra") or []
-        info["dynamic"] = info.get("dynamic") or []
-        info["license_files"] = info.get("license_files") or []
+        info["requires_dist"] = info.get("requires_dist", [])
+        info["provides_extra"] = info.get("provides_extra", [])
+        info["dynamic"] = info.get("dynamic", [])
+        info["license_files"] = info.get("license_files", [])
 
         vulns = list(map(Vulnerability.from_json, data["vulnerabilities"]))
         files = list(map(ReleaseFile.from_json, data["urls"]))
+        ownership = Ownership.from_json(data["ownership"])
 
         return cls(
             **info,
             last_serial=data["last_serial"],
             vulnerabilities=vulns,
             file_urls=files,
+            ownership=ownership,
         )
 
     def __repr__(self) -> str:
@@ -197,6 +205,52 @@ class Vulnerability(APIObject):
         return self._build_repr_string(
             id=self.id, source=self.source, withdrawn=self.withdrawn
         )
+
+
+@dataclass
+class Ownership(APIObject):
+    """Information about the project's roles and organization membership.
+
+    .. versionadded:: 2.1.0
+    """
+
+    roles: list[Role]
+    """Roles representing the project's owners and maintainers."""
+
+    organization: str | None = None
+    """The URL slug of the organization that owns this project, or none if the
+    project is not owned by an organization."""
+
+    @classmethod
+    def from_json(cls, data: dict[str, Any]) -> Ownership:
+        roles = [Role.from_json(role) for role in data["roles"]]
+        organization = data["organization"]
+
+        return cls(roles=roles, organization=organization)
+
+    def __repr__(self) -> str:
+        return self._build_repr_string(roles=self.roles, organization=self.organization)
+
+
+@dataclass
+class Role(APIObject):
+    """A role within an organization.
+
+    .. versionadded:: 2.1.0
+    """
+
+    role: str
+    """The name of the role assigned to the user. Either 'Owner' or 'Maintainer'."""
+
+    user: str
+    """The username to which this role is assigned."""
+
+    @classmethod
+    def from_json(cls, data: dict[str, Any]) -> Role:
+        return cls(role=data["role"], user=data["user"])
+
+    def __repr__(self) -> str:
+        return self._build_repr_string(self.role, user=self.user)
 
 
 @dataclass

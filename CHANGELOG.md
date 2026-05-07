@@ -8,7 +8,8 @@
 ### Additions
 
 - Support for PEP 792 project status markers via `Meta.project_status` and `Meta.project_status_reason`.
-- Support Python 3.13 and 3.14.
+- Support for Python 3.13 and 3.14.
+- Support for ownership data returned by the PyPI JSON API via `Project.ownership` and `Ownership`.
 - Bump expected Simple Repository API version to 1.4.
 
 ### Changes

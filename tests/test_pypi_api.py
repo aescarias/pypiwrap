@@ -15,6 +15,7 @@ def test_parse_pypi_project() -> None:
         assert project.file_urls[0].upload_time_tz == datetime.datetime(
             2024, 11, 13, 18, 24, 36, 135982, tzinfo=datetime.timezone.utc
         )
+        assert project.ownership.organization == "pallets"
 
 
 def test_parse_pypi_stats() -> None:
