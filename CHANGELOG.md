@@ -10,11 +10,15 @@
 - Support for PEP 792 project status markers via `Meta.project_status` and `Meta.project_status_reason`.
 - Support for Python 3.13 and 3.14.
 - Support for ownership data returned by the PyPI JSON API via `Project.ownership` and `Ownership`.
-- Bump expected Simple Repository API version to 1.4.
 
 ### Changes
 
 - Drop support for Python 3.9.
+- Bump expected Simple Repository API version to 1.4.
+
+## Deprecations
+
+- `ProjectPage.alternate_locations` and `Meta.tracks` have been deprecated as PEP 708 was rejected. They will be removed in pypiwrap 3.0.
 
 ## [2.0.0] (2025-01-18)
 
@@ -31,11 +35,11 @@ pypiwrap 2.0 adds support for the PyPI RSS feeds and the current versions of the
 - `Project.provides_extra` (PEP 566).
 - `DistributionFile.gpg_url` and `DistributionFile.metadata_url`.
 - `DistributionFile.provenance_url` (PEP 740).
-- `ProjectPage.alternate_locations` (PEP 708).
+- `ProjectPage.alternate_locations` and `Meta.tracks` (PEP 708).
 
 ### Changes
 
-- Bumped minimum supported version to Python 3.9.
+- Dropped support for Python 3.8.
 - `APIObject._from_raw` is now exposed as `APIObject.from_json`.
 - Renamed `SimpleClient` to `SimpleRepoClient` and so:
   - `SimpleClient.get_index` -> `SimpleRepoClient.get_index_page`

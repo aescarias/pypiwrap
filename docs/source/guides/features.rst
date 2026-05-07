@@ -66,11 +66,13 @@ PEPs relating to PyPI
       - Yes
       - This PEP introduces version 1.1 of the Simple Repository API.
     * - `PEP 708 - Extending the Repository API to Mitigate Dependency Confusion Attacks <https://peps.python.org/pep-0708/#alternate-locations-metadata>`_
-      - Yes
+      - Yes [#f1]_
       - This PEP introduces the ``tracks`` and ``alternate-locations`` keys.
     * - `PEP 740 - Index support for digital attestations <https://peps.python.org/pep-0740/>`_
       - Partially
       - This PEP introduces provenance objects and attestations. Only the ``provenance`` field returned by the Simple Repository API is recognized.
     * - `PEP 792 - Project status markers in the simple index <https://peps.python.org/pep-0792/>`_
       - Yes
-      - See :attr:`.Meta.project_status` and :attr:`.Meta.project_status_reason`.
+      - See :attr:`.ProjectPage.status` and :attr:`.ProjectPage.status_reason`.
+
+.. [#f1] PEP 708 was rejected in April 2026. Its implementation in pypiwrap is now deprecated and scheduled to be removed in 3.0. 

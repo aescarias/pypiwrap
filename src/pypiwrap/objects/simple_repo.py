@@ -145,6 +145,10 @@ class Meta(APIObject):
     extending repository.
     
     See https://peps.python.org/pep-0708/#repository-tracks-metadata for details.
+
+    .. deprecated:: 2.1.0
+        This attribute is deprecated as result of PEP 708 being rejected. It will
+        be removed in 3.0.0.
     """
 
     @classmethod
@@ -201,6 +205,10 @@ class ProjectPage(APIObject):
     See https://peps.python.org/pep-0708/#alternate-locations-metadata for details.
     
     .. versionadded:: 2.0.0
+
+    .. deprecated:: 2.1.0
+        This attribute is deprecated as result of PEP 708 being rejected. It will
+        be removed in 3.0.0.
     """
 
     versions: list[str]
