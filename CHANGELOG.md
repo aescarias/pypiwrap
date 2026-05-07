@@ -3,7 +3,7 @@
 
 (versions follow [Semantic Versioning v2.0.0](https://semver.org/spec/v2.0.0.html))
 
-## [unreleased]
+## [2.1.0] (2026-05-07)
 
 ### Additions
 
@@ -173,7 +173,8 @@ This is a complete rewrite of the original project, designed with a more Pythoni
 
 This is the first release of `pypiwrap`. :tada:
 
-[unreleased]: https://github.com/aescarias/pypiwrap/compare/v2.0.0...main
+<!-- [unreleased]: https://github.com/aescarias/pypiwrap/compare/v2.0.0...main -->
+[2.1.0]: https://github.com/aescarias/pypiwrap/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/aescarias/pypiwrap/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/aescarias/pypiwrap/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/aescarias/pypiwrap/compare/0.3.0...v1.0.0
